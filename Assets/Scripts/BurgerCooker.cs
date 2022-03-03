@@ -4,52 +4,41 @@ using UnityEngine;
 
 public class BurgerCooker : MonoBehaviour
 {
-    [Header("Burger Stages")]
-    public Material MaterialOne;
-    public Material MaterialTwo;
+    [Header("Burger Halves")]
+    public GameObject UpperHalf;
+    public GameObject LowerHalf;
+    private GameObject GrillingHalf;
 
-    [Header("Heat Stuff")]
-    public float heat;
-    private bool onGrill;
 
     // Start is called before the first frame update
     void Start()
     {
-        heat = 0f;
-        gameObject.GetComponent<MeshRenderer>().material = MaterialOne;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (heat > 20f)
-            gameObject.GetComponent<MeshRenderer>().material = MaterialTwo;
-        if (onGrill)
-            heat += (1f * Time.deltaTime);
+        
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        onGrill = true;
+        if (other.transform.tag == "Grill")
+            GrillingHalf = GetHalf();
+            GrillingHalf.StartGrilling();
+            
     }
 
     void OnTriggerExit()
     {
-        onGrill = false;
-        StartCoroutine(LatentHeat());
+        GrillingHalf.StopGrilling();
     }
 
-    IEnumerator LatentHeat()
+    private GameObject GetHalf()
     {
-        float internalHeat = 0;
-        while (internalHeat < 5f)
-        {
-            if (onGrill)
-                break;
-            heat += (1f);
-            yield return new WaitForSeconds(1);
-            internalHeat += 1;
-        }
-        Debug.Log("burg cool");
+        float upAngle = Quaternion.Angle(Quaternion.Euler(-90, 0, 0), transform.rotation);
+        float downAngle = Quaternion.Angle(Quaternion.Euler(90, 0, 0), transform.rotation);
+        return upAngle < downAngle ? UpperHalf : LowerHalf;
     }
 }

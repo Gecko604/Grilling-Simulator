@@ -17,6 +17,7 @@ public class BurgerStager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Agony");
         heat = 0f;
         gameObject.GetComponent<MeshRenderer>().material = Raw;
     }

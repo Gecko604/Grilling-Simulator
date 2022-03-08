@@ -186,6 +186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpperHalf: {fileID: 8777634203909454965}
   LowerHalf: {fileID: 8563169682392229963}
+  UpperStager: {fileID: 3132983026323541186}
+  LowerStager: {fileID: 4113831270356675937}
 --- !u!1001 &8435525898745823524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -239,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5b86714045e70424287bf710039f98ab, type: 3}
       propertyPath: m_Name
-      value: rawPattyHalf
+      value: UpperHalf
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5b86714045e70424287bf710039f98ab, type: 3}
       propertyPath: m_TagString
@@ -270,23 +272,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08, y: 0.007, z: 0.08}
   m_Center: {x: 0, y: 0.0036342875, z: 0}
---- !u!114 &5131283865129066966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8777634203909454965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f45ebf774a91954d9d304cd3dda8791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Raw: {fileID: 0}
-  MediumRare: {fileID: 0}
-  WellDone: {fileID: 0}
-  Overcooked: {fileID: 0}
-  heat: 0
 --- !u!114 &3132983026323541186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +288,23 @@ MonoBehaviour:
   MediumRare: {fileID: 2100000, guid: 5cdb8f4b8bd50274fb53fe36267e82d5, type: 2}
   WellDone: {fileID: 2100000, guid: 990dd584c01d82b42af347fa48889706, type: 2}
   Overcooked: {fileID: 2100000, guid: dc7bfcaa354098840ade2e03d919ae2a, type: 2}
+  heat: 0
+--- !u!114 &5131283865129066966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8777634203909454965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f45ebf774a91954d9d304cd3dda8791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Raw: {fileID: 0}
+  MediumRare: {fileID: 0}
+  WellDone: {fileID: 0}
+  Overcooked: {fileID: 0}
   heat: 0
 --- !u!1001 &8797523096974071066
 PrefabInstance:
@@ -357,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5b86714045e70424287bf710039f98ab, type: 3}
       propertyPath: m_Name
-      value: rawPattyHalf (1)
+      value: LowerHalf
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5b86714045e70424287bf710039f98ab, type: 3}
       propertyPath: m_TagString

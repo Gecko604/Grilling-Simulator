@@ -5,9 +5,10 @@ using UnityEngine;
 public class BurgerCooker : MonoBehaviour
 {
     [Header("Burger Halves")]
-    public GameObject UpperHalf;
-    public GameObject LowerHalf;
-    private GameObject GrillingHalf;
+    // public GameObject UpperHalf;
+    // public GameObject LowerHalf;
+    public BurgerStager UpperStager;
+    public BurgerStager LowerStager;
 
 
     // Start is called before the first frame update
@@ -25,20 +26,29 @@ public class BurgerCooker : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Grill")
-            GrillingHalf = GetHalf();
-            GrillingHalf.StartGrilling();
-            
+        {
+            if (GetHalf())
+                UpperStager.StartGrilling();
+            else
+                LowerStager.StartGrilling();
+        }
     }
 
-    void OnTriggerExit()
+    void OnTriggerExit(Collider other)
     {
-        GrillingHalf.StopGrilling();
+        if (other.transform.tag == "Grill")
+        {
+            if (GetHalf())
+                UpperStager.StopGrilling();
+            else
+                LowerStager.StopGrilling();
+        }
     }
 
-    private GameObject GetHalf()
+    private bool GetHalf()
     {
         float upAngle = Quaternion.Angle(Quaternion.Euler(-90, 0, 0), transform.rotation);
         float downAngle = Quaternion.Angle(Quaternion.Euler(90, 0, 0), transform.rotation);
-        return upAngle < downAngle ? UpperHalf : LowerHalf;
+        return upAngle < downAngle;
     }
 }

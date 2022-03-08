@@ -32,7 +32,15 @@ public class ScoreManager : MonoBehaviour
     public void Start()
     {
         UpdateScore();
-        createTransaction(-4.75f);
+        //Angry Customer - Debug 
+        MealCompleted(5, 1);
+        //Annoyed Customer
+        MealCompleted(5, 2);
+        //Satisfied Customer
+        MealCompleted(5, 3);
+        //Happy Customer
+        MealCompleted(5, 4);
+
     }
     public void MealCompleted(int customerReceipt, int customerSatisfaction)
     {
@@ -41,27 +49,31 @@ public class ScoreManager : MonoBehaviour
         //If the customer is angry, a refund will be issued and the meal's value will be subtracted from score
         if (customerSatisfaction == 1)
         {
-            ChangeScore(customerReceipt);
+            createTransaction(customerReceipt * -1.0f);
             angryCustomers++;
         }
         // If the customer is annoyed, they will add the value of the meal, but leave no tip
         if (customerSatisfaction == 2)
         {
-            ChangeScore(customerReceipt * 1.0f);
+            createTransaction(customerReceipt * 1.0f);
             annoyedCustomers++;
         }
         // If the customer is satisfied, they will add the value of the meal and leave a 10% tip
         if (customerSatisfaction == 3)
         {
-            ChangeScore(customerReceipt * 1.1f);
+            createTransaction(customerReceipt * 1.1f);
             satisfiedCustomers++;
         }
         // If the customer is happy, they will add the value of the meal and leave a 30% tip
         if (customerSatisfaction == 4)
         {
-            ChangeScore(customerReceipt * 1.3f);
+            createTransaction(customerReceipt * 1.3f);
             happyCustomers++;
+
+            
         }
+
+
     }
     /*
      * Create a visual alert to score change

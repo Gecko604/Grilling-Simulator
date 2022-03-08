@@ -5,16 +5,20 @@ using UnityEngine;
 public class BurgerCooker : MonoBehaviour
 {
     [Header("Burger Halves")]
-    // public GameObject UpperHalf;
-    // public GameObject LowerHalf;
-    public BurgerStager UpperStager;
-    public BurgerStager LowerStager;
+    public GameObject topBurger;
+    public GameObject bottomBurger;
+
+    //public BurgerStager UpperStager;
+    //public BurgerStager LowerStager;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (topBurger.GetComponent<BurgerStager>() == null) { Debug.Log("Missing UpperStager"); };
+        if (bottomBurger.GetComponent<BurgerStager>() == null) { Debug.Log("Missing LowerStager"); };
+
+        Debug.Log("BurgerCooker.cs Start");
     }
 
     // Update is called once per frame
@@ -25,23 +29,31 @@ public class BurgerCooker : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"OnTriggerEnter other: {other.gameObject}");
         if (other.transform.tag == "Grill")
         {
             if (GetHalf())
-                UpperStager.StartGrilling();
+            {
+                Debug.Log("Upper start grilling");
+                topBurger.GetComponent<BurgerStager>().StartGrilling();
+                Debug.Log("Upper started grilling");
+            }
             else
-                LowerStager.StartGrilling();
+            {
+                Debug.Log("Lower start grilling");
+                bottomBurger.GetComponent<BurgerStager>().StartGrilling();
+                Debug.Log("Lower started grilling");
+            }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
+        Debug.Log($"OnTriggerExit other: {other.gameObject}");
         if (other.transform.tag == "Grill")
         {
-            if (GetHalf())
-                UpperStager.StopGrilling();
-            else
-                LowerStager.StopGrilling();
+            bottomBurger.GetComponent<BurgerStager>().StopGrilling();
+            topBurger.GetComponent<BurgerStager>().StopGrilling();
         }
     }
 
@@ -49,6 +61,14 @@ public class BurgerCooker : MonoBehaviour
     {
         float upAngle = Quaternion.Angle(Quaternion.Euler(-90, 0, 0), transform.rotation);
         float downAngle = Quaternion.Angle(Quaternion.Euler(90, 0, 0), transform.rotation);
-        return upAngle < downAngle;
+        Debug.Log($"GetHalf() upAngle: {upAngle} downAngle: {downAngle}");
+
+        if(upAngle < downAngle)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 }

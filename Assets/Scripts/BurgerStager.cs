@@ -11,45 +11,57 @@ public class BurgerStager : MonoBehaviour
     public Material Overcooked;
 
     [Header("Heat Stuff")]
-    public float heat;
-    private bool onGrill;
+    public float heat = 0.0f;
+    private bool onGrill = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Agony");
-        heat = 0f;
-        gameObject.GetComponent<MeshRenderer>().material = Raw;
+        Debug.Log("Agony: Unity crashed");
+
+        if (gameObject.GetComponent<MeshRenderer>().material == null) { Debug.Log("Missing MeshRenderer"); return; };
+
+        //gameObject.GetComponent<MeshRenderer>().material = Raw;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (heat > 10f && heat < 20f)
+        Debug.Log("life is pain, a stark reminder every frame of this godless project");
+        if (heat >= 10f && heat < 20f)
             gameObject.GetComponent<MeshRenderer>().material = MediumRare;
-        else if (heat > 20f && heat < 30f)
+        else if (heat >= 20f && heat < 30f)
             gameObject.GetComponent<MeshRenderer>().material = WellDone;
-        else if (heat > 30f)
+        else if (heat >= 30f)
             gameObject.GetComponent<MeshRenderer>().material = Overcooked;
-    }
 
-    public void StartGrilling()
-    {
-        onGrill = true;
-        while (onGrill)
+        if (onGrill)
         {
             heat += (1f * Time.deltaTime);
         }
     }
 
-    public void StopGrilling()
+    public void StartGrilling()
     {
-        onGrill = false;
-        StartCoroutine(LatentHeat());
+        Debug.Log("endless torment, why must i be burnt");
+        onGrill = true;
     }
 
-    IEnumerator LatentHeat()
+    public void StopGrilling()
     {
+        Debug.Log("i lament the time when I must burn again, please make it not so.");
+        if (onGrill)
+        {
+            onGrill = false;
+            StartCoroutine(LatentHeat());
+        }
+        
+        
+    }
+
+    public IEnumerator LatentHeat()
+    {
+        Debug.Log("Let the meat burning commence, Isaiah 12:32");
         float internalHeat = 0;
         while (internalHeat < 5f)
         {

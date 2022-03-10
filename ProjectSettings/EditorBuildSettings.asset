@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GrillScene-jackson.unity
+    guid: 2ed2c288740d20549beab0f283d7fa30
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: d3366c364e7d1cc429c653cb9299f379, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c25b1c08e9a1bc54eaa2f39fbad73d5e, type: 2}

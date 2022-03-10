@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4296512260418742564}
   m_Layer: 0
   m_Name: Burger
-  m_TagString: Grillable
+  m_TagString: Burger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

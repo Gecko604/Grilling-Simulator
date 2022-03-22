@@ -7,6 +7,7 @@ public class VelocityTracker : MonoBehaviour
 
     private Vector3 velocity;
     private bool onSpatula = false;
+    public GameObject burger;
 
 
     private void Update()
@@ -14,7 +15,7 @@ public class VelocityTracker : MonoBehaviour
         velocity = gameObject.GetComponent<Rigidbody>().velocity;
         if (onSpatula)
         {
-
+            burger.GetComponent<Rigidbody>().velocity = velocity;
         }
     }
 
@@ -23,6 +24,15 @@ public class VelocityTracker : MonoBehaviour
         if (other.transform.tag == "Burger")
         {
             onSpatula = true;
+            burger = other.gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "Burger")
+        {
+            onSpatula = false;
         }
     }
 }

@@ -5,17 +5,19 @@ using UnityEngine;
 public class VelocityTracker : MonoBehaviour
 {
 
-    private Vector3 velocity;
-    private bool onSpatula = false;
+    public float x;
+    public float z;
+    public bool onSpatula = false;
     public GameObject burger;
 
 
     private void Update()
     {
-        velocity = gameObject.GetComponent<Rigidbody>().velocity;
+        x = gameObject.transform.position.x;
+        z = gameObject.transform.position.z + 0.193f;
         if (onSpatula)
         {
-            burger.GetComponent<Rigidbody>().velocity = velocity;
+            burger.transform.position = new Vector3(x, burger.transform.position.y, z);
         }
     }
 

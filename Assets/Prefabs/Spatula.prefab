@@ -57,6 +57,8 @@ GameObject:
   - component: {fileID: 3958998261241675881}
   - component: {fileID: 9197180140910739097}
   - component: {fileID: 3005047938403748226}
+  - component: {fileID: 3728226164314799905}
+  - component: {fileID: 1593586090686139922}
   m_Layer: 0
   m_Name: Spatula
   m_TagString: Untagged
@@ -72,7 +74,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5444745154997596374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0057, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5442233173780570121}
@@ -201,6 +203,32 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactable: {fileID: 0}
+--- !u!114 &3728226164314799905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5444745154997596374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5dcc9432142205488cc7d38d1df864d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burger: {fileID: 0}
+--- !u!65 &1593586090686139922
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5444745154997596374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.095, y: 0.004, z: 0.055}
+  m_Center: {x: -0.193, y: 0, z: 0}
 --- !u!1 &5868656732771367695
 GameObject:
   m_ObjectHideFlags: 0

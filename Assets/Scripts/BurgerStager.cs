@@ -12,7 +12,7 @@ public class BurgerStager : MonoBehaviour
 
     [Header("Heat Stuff")]
     public float heat = 0.0f;
-    private bool onGrill = false;
+    public bool onGrill = false;
 
     // Start is called before the first frame update
     void Start()

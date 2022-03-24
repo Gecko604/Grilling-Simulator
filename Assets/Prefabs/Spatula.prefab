@@ -215,6 +215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dcc9432142205488cc7d38d1df864d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
+  z: 0
+  onSpatula: 0
   burger: {fileID: 0}
 --- !u!65 &1593586090686139922
 BoxCollider:
@@ -227,7 +230,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.095, y: 0.004, z: 0.055}
+  m_Size: {x: 0.05, y: 0.004, z: 0.02}
   m_Center: {x: -0.193, y: 0, z: 0}
 --- !u!1 &5868656732771367695
 GameObject:

@@ -12,24 +12,19 @@ public class VelocityTracker : MonoBehaviour
     public Vector3 rotationVector;
 
 
-    private void Update()
+    private void FixedUpdate()
     {
-        x = gameObject.transform.position.x;
-        z = gameObject.transform.position.z + 0.193f;
-        rotationVector = gameObject.transform.rotation.eulerAngles;
-        if (onSpatula)
-        {
-            burger.transform.position = new Vector3(x, burger.transform.position.y, z);
-            burger.transform.rotation = Quaternion.Euler(rotationVector);
-        }
+        
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.transform.tag == "Burger")
         {
+            print("on spat");
             onSpatula = true;
             burger = other.gameObject;
+            burger.transform.parent = transform;
         }
     }
 
@@ -37,7 +32,9 @@ public class VelocityTracker : MonoBehaviour
     {
         if (other.transform.tag == "Burger")
         {
+            print("off spat");
             onSpatula = false;
+            burger.transform.parent = null;
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Pointer : MonoBehaviour
 {
@@ -22,7 +23,9 @@ public class Pointer : MonoBehaviour
 
     private void UpdateLine()
     {
-        float targetLength = m_DefaultLength;
+        //use default or distance
+        PointerEventData data = m_InputModule.GetData();
+        float targetLength = data.pointerCurrentRaycast.distance == 0 ? m_DefaultLength : data.pointerCurrentRaycast.distance;
 
         //Raycast
         RaycastHit hit = CreateRaycast(targetLength);

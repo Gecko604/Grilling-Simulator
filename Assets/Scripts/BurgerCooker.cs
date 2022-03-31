@@ -59,11 +59,11 @@ public class BurgerCooker : MonoBehaviour
 
     private bool GetHalf()
     {
-        float upAngle = Quaternion.Angle(Quaternion.Euler(-90, 0, 0), transform.rotation);
-        float downAngle = Quaternion.Angle(Quaternion.Euler(90, 0, 0), transform.rotation);
-        Debug.Log($"GetHalf() upAngle: {upAngle} downAngle: {downAngle}");
+        //float upAngle = Quaternion.Angle(Quaternion.Euler(0, -90, 0), transform.rotation);
+        //float downAngle = Quaternion.Angle(Quaternion.Euler(0, 90, 0), transform.rotation);
+        //Debug.Log($"GetHalf() upAngle: {upAngle} downAngle: {downAngle}");
 
-        if(upAngle < downAngle)
+        if(topBurger.transform.position.y > bottomBurger.transform.position.y)
         {
             return true;
         } else

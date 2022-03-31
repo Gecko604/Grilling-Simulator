@@ -5,26 +5,26 @@ using UnityEngine;
 public class VelocityTracker : MonoBehaviour
 {
 
-    private Vector3 velocity;
-    private bool onSpatula = false;
+    public float x;
+    public float z;
+    public bool onSpatula = false;
     public GameObject burger;
+    public Vector3 rotationVector;
 
 
-    private void Update()
+    private void FixedUpdate()
     {
-        velocity = gameObject.GetComponent<Rigidbody>().velocity;
-        if (onSpatula)
-        {
-            burger.GetComponent<Rigidbody>().velocity = velocity;
-        }
+        
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.transform.tag == "Burger")
         {
+            print("on spat");
             onSpatula = true;
             burger = other.gameObject;
+            burger.transform.parent = transform;
         }
     }
 
@@ -32,7 +32,9 @@ public class VelocityTracker : MonoBehaviour
     {
         if (other.transform.tag == "Burger")
         {
+            print("off spat");
             onSpatula = false;
+            burger.transform.parent = null;
         }
     }
 }

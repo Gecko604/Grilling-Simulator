@@ -27,7 +27,7 @@ public class BurgerStager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("life is pain, a stark reminder every frame of this godless project");
+        //Debug.Log("life is pain, a stark reminder every frame of this godless project");
         if (heat >= 10f && heat < 20f)
             gameObject.GetComponent<MeshRenderer>().material = MediumRare;
         else if (heat >= 20f && heat < 30f)

@@ -11,47 +11,68 @@ public class Ingredient : MonoBehaviour
 
     public Transform burgerParent;
     public Transform ingredients;
+
+    [Header("Booleans")]
     private Boolean isInCombineZone;
     public Boolean snapped;
+    public Boolean inHand;
+
     // Start is called before the first frame update
     void Start()
     {
         snapped = false;
+        inHand = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (snapped)
+        {
+
+        }
+        else 
+        {
+
+        }
+        if (inHand) 
+        {
+
+        }
+        
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"OnTriggerEnter other: {other.gameObject}");
+        GameObject otherObject = other.gameObject;
+        Debug.Log($"OnTriggerEnter other: {otherObject}");
         if (other.gameObject.CompareTag("CombineZone")) //if combine zone, add this to burger parent object
         {
-            GameObject zone = other.gameObject;
-            //set to center of trigger area
-            moveToCenter(zone);
-            this.transform.SetParent(burgerParent);
-
-
-            zone.SetActive(false);
+            isInCombineZone = true;
+            if (!inHand)
+            {
+                //set to center of trigger area
+                moveToCenter(otherObject);
+                this.transform.SetParent(burgerParent);
+                otherObject.SetActive(false);
+            }
         }
     }
 
     void OnCollisionExit(Collider other)
     {
-        Debug.Log($"OnTriggerEnter other: {other.gameObject}");
+        Debug.Log($"OnTriggerExit other: {other.gameObject}");
         if (other.CompareTag("CombineZone"))
         {
-            GameObject zone = other.gameObject;
-
+            GameObject otherObject = other.gameObject;
+            isInCombineZone = false;
             this.transform.SetParent(ingredients);
         }
     }
 
-    void moveToCenter(GameObject zone)
+    //sets this position to position of zone
+    void moveToCenter(GameObject other)
     {
-        this.transform.position = zone.transform.position;
+        this.transform.position = other.transform.position;
     }
 }

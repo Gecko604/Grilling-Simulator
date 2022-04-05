@@ -13,10 +13,13 @@ public class orderManager : MonoBehaviour
 
     [SerializeField]
     private GameObject emptyOrder = null;
+
+
+    public List<GameObject> currentOrders = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
-        List<GameObject> currentOrders = new List<GameObject>();
+        
 
         //Add all starting orders to the current order list 
         for(int i = 0; i < orders.Length; i++)
@@ -38,11 +41,6 @@ public class orderManager : MonoBehaviour
         PopulateOrders(currentOrders);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void PopulateOrders(List<GameObject> list)
     {
@@ -51,6 +49,18 @@ public class orderManager : MonoBehaviour
             GameObject order = Instantiate(emptyOrder, transform, false);
             order.transform.position = new Vector3(orderLocations[i], order.transform.position.y, order.transform.position.z);
             Debug.Log("Spawned Order");
+        }
+    }
+
+
+    public void CompleteOrder(string orderNumber)
+    {
+        for (int i = 0; i < currentOrders.Count; i++)
+        {
+            if (currentOrders[i].name == orderNumber)
+            {
+                //note
+            }
         }
     }
 }

@@ -59,16 +59,16 @@ public class Ingredient : MonoBehaviour
         }
     }
 
-    void OnCollisionExit(Collider other)
+    /**void OnCollisionExit(Collider other)
     {
-        Debug.Log($"OnTriggerExit other: {other.gameObject}");
+        Debug.Log($"OnTriggerExit other: {other}");
         if (other.CompareTag("CombineZone"))
         {
             GameObject otherObject = other.gameObject;
             isInCombineZone = false;
             this.transform.SetParent(ingredients);
         }
-    }
+    }*/
 
     //sets this position to position of zone
     void moveToCenter(GameObject other)

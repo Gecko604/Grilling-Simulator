@@ -46,7 +46,7 @@ public class Ingredient : MonoBehaviour
     {
         GameObject otherObject = other.gameObject;
         Debug.Log($"OnTriggerEnter other: {otherObject}");
-        if (other.gameObject.CompareTag("CombineZone")) //if combine zone, add this to burger parent object
+        if (other.gameObject.CompareTag("trigger zone")) //if combine zone, add this to burger parent object
         {
             isInCombineZone = true;
             if (!inHand)

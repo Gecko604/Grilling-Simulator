@@ -6,13 +6,15 @@ using UnityEngine;
 public class BurgerCombiner : MonoBehaviour
 {
     public Transform parent;
-
+    public GameObject nextZone;
 
     [Header("Ingredients of Burger")]
     public Boolean hasLettuce;
     public int numberOfLettucePieces;
     public Boolean hasCheese;
     public int numberOfCheeseSlices;
+    public Boolean hasPatty;
+    public int numberOfPatties;
     public Boolean hasTopBun;
     public int topBunPosition;
     public Boolean hasBottomBun;
@@ -20,8 +22,9 @@ public class BurgerCombiner : MonoBehaviour
     
     
     public int numberOfIngredients;
-    public int ingredientoffset;
-    
+    public float ingredientoffset;
+    public Boolean hasIngredient;
+    private Vector3 centerlocation;
 
 
     // Start is called before the first frame update
@@ -41,6 +44,8 @@ public class BurgerCombiner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        centerlocation = new Vector3(this.transform.position.x, this.transform.position.y + ingredientoffset,
+            this.transform.position.z);
         //if both topbun and bottombun are in burger or surpass 5 ingredients, stop allowing combination and activate throwable/interactable for whole object
         if (numberOfIngredients >= 5 || (hasTopBun && hasBottomBun))
         {
@@ -50,11 +55,17 @@ public class BurgerCombiner : MonoBehaviour
         {
 
         }
+
+        if (hasIngredient)
+        {
+            nextZone.SetActive(true);
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         GameObject ingredient = other.gameObject;
+
         if (ingredient.CompareTag("Lettuce"))
         {
             ingredient.transform.SetParent(this.transform);
@@ -77,11 +88,23 @@ public class BurgerCombiner : MonoBehaviour
         }
         if (ingredient.CompareTag("Burger"))
         {
+            ingredient.transform.position = centerlocation;
             ingredient.transform.SetParent(this.transform);
+            hasIngredient = true;
+            hasPatty = true;
             //reference other script to state position and confirm lettuce is on burger
         }
-
     }
 
+    void OnTriggerExit(Collider other)
+    {
+        GameObject ingredient = other.gameObject;
+        if (ingredient.CompareTag("Burger"))
+        {
+            ingredient.transform.SetParent(null);
+            hasIngredient = false;
+            hasPatty = false;
+        }
+    }
 }
 

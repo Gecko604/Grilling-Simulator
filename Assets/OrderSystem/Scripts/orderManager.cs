@@ -52,14 +52,22 @@ public class orderManager : MonoBehaviour
         }
     }
 
-
+    // Complete an order 
     public void CompleteOrder(string orderNumber)
     {
         for (int i = 0; i < currentOrders.Count; i++)
         {
             if (currentOrders[i].name == orderNumber)
             {
-                //note
+                // If the completed order matches a ticket, then delete the order, remove from list and run the score system evaluation
+                GameObject completedOrder = currentOrders[i];
+
+                //Remove order from list 
+                currentOrders.Remove(completedOrder);
+                //Destroy Order Ticket Object
+                Destroy(completedOrder);
+
+
             }
         }
     }

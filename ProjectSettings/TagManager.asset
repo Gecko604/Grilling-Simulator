@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Burger
+  - Grillable
+  - Grill
+  - Plate
+  - Ingredient
   layers:
   - Default
   - TransparentFX

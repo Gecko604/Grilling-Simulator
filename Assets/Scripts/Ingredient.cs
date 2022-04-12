@@ -27,18 +27,6 @@ public class Ingredient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (snapped)
-        {
-
-        }
-        else 
-        {
-
-        }
-        if (inHand) 
-        {
-
-        }
         
     }
 
@@ -59,20 +47,12 @@ public class Ingredient : MonoBehaviour
         }
     }
 
-    /**void OnCollisionExit(Collider other)
-    {
-        Debug.Log($"OnTriggerExit other: {other}");
-        if (other.CompareTag("CombineZone"))
-        {
-            GameObject otherObject = other.gameObject;
-            isInCombineZone = false;
-            this.transform.SetParent(ingredients);
-        }
-    }*/
-
     //sets this position to position of zone
     void moveToCenter(GameObject other)
     {
         this.transform.position = other.transform.position;
     }
+
+
+
 }

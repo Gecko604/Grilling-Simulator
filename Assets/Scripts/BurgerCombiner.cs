@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BurgerCombiner : MonoBehaviour
 {
     public Transform parent;
     public GameObject nextZone;
+
+    // Develop better system for moving trigger zone up and add ingredients to list, remove from list as objects are removed, keep only top object interactable and removable
+
 
     [Header("Ingredients of Burger")]
     public Boolean hasLettuce;
@@ -20,12 +24,10 @@ public class BurgerCombiner : MonoBehaviour
     public Boolean hasBottomBun;
     public int bottomBunPosition;
     
-    
     public int numberOfIngredients;
     public float ingredientoffset;
     public Boolean hasIngredient;
     private Vector3 centerlocation;
-
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,7 @@ public class BurgerCombiner : MonoBehaviour
         numberOfCheeseSlices = 0;
         hasTopBun = false;
         hasBottomBun = false;
-        ingredientoffset = 0;
+        ingredientoffset = 0.01f;
     }
 
 
@@ -65,33 +67,13 @@ public class BurgerCombiner : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         GameObject ingredient = other.gameObject;
-
-        if (ingredient.CompareTag("Lettuce"))
-        {
-            ingredient.transform.SetParent(this.transform);
-            //reference other script to state position and confirm lettuce is on burger
-        }
-        if (ingredient.CompareTag("Cheese"))
-        {
-            ingredient.transform.SetParent(this.transform);
-            //reference other script to state position and confirm lettuce is on burger
-        }
-        if (ingredient.CompareTag("BottomBun"))
-        {
-            ingredient.transform.SetParent(this.transform);
-            //reference other script to state position and confirm lettuce is on burger
-        }
-        if (ingredient.CompareTag("TopBun"))
-        {
-            ingredient.transform.SetParent(this.transform);
-            //reference other script to state position and confirm lettuce is on burger
-        }
-        if (ingredient.CompareTag("Burger"))
+        if (ingredient.CompareTag("Ingredient"))
         {
             ingredient.transform.position = centerlocation;
             ingredient.transform.SetParent(this.transform);
             hasIngredient = true;
             hasPatty = true;
+            ingredient.GetComponent<Rigidbody>().isKinematic = true;
             //reference other script to state position and confirm lettuce is on burger
         }
     }
@@ -99,9 +81,10 @@ public class BurgerCombiner : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         GameObject ingredient = other.gameObject;
-        if (ingredient.CompareTag("Burger"))
+        if (ingredient.CompareTag("Ingredient"))
         {
             ingredient.transform.SetParent(null);
+            ingredient.GetComponent<Rigidbody>().isKinematic = false;
             hasIngredient = false;
             hasPatty = false;
         }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CompleteOrder : MonoBehaviour
 {
-    [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] 
+    private ScoreManager scoreManager;
+    private orderManager orderManager;
 
     [SerializeField] 
     private GameObject turnInBurger = null;
@@ -30,6 +32,9 @@ public class CompleteOrder : MonoBehaviour
             ////TODO: MealCompleted(bill amount, satisfaction level); 
             scoreManager.CreateTransaction(5);
 
+            //Delete Order from orderManager 
+            //TODO: Give order the order ticket number
+            orderManager.CompleteOrder("defaultText");
 
             //Destroy turned in order components => Reset variable references
             Destroy(turnInBurger);

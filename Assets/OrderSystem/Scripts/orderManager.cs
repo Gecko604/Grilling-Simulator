@@ -5,7 +5,7 @@ using UnityEngine;
 public class orderManager : MonoBehaviour
 {
     [SerializeField]
-    public GameObject[] orders = null;
+    public GameObject[] startingOrders = null;
 
     [SerializeField]
     private float[] orderLocations = null;
@@ -16,11 +16,11 @@ public class orderManager : MonoBehaviour
 
 
     public List<GameObject> currentOrders = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
-        
-
+       
         //Add all starting orders to the current order list 
         for(int i = 0; i < orders.Length; i++)
         {

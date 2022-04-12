@@ -5092,7 +5092,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f82e67c2364ba49a210e9b62843f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orders: []
+  orders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   orderLocations:
   - 0
   - 0

@@ -48,7 +48,7 @@ public class orderManager : MonoBehaviour
         {
             GameObject order = Instantiate(emptyOrder, transform, false);
             order.transform.position = new Vector3(orderLocations[i], order.transform.position.y, order.transform.position.z);
-            Debug.Log("Spawned Order");
+            //Debug.Log("Spawned Order");
         }
     }
 

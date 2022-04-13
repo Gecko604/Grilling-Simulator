@@ -5,9 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GrillingObjects", menuName = "ScriptableObjects/OrderObject", order = 1)]
 public class OrderObject : ScriptableObject
 {
-    public string prefabName;
+    public int orderNumber;
 
-    public int numIngredients;
+    public int difficulty;
+    public string pattyType;
+    public List<string> ingredients;
 
 }
 

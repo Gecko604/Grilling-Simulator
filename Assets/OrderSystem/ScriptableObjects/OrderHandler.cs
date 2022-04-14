@@ -6,14 +6,11 @@ public class OrderHandler : MonoBehaviour
 {
 
     [SerializeField]
-    private List<string> burgerTemplate = null;
-
-
+    public List<string> burgerTemplate = null;
+    public List<string> ingredients = null;
     private int maxIngredients = 6;
-
     private string patty = null;
-    private List<string> ingredients = null;
-    private int orderNumber = -1;
+    public int orderNumber = -1;
 
 
 

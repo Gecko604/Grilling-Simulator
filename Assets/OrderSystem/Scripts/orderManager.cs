@@ -22,9 +22,9 @@ public class orderManager : MonoBehaviour
     {
        
         //Add all starting orders to the current order list 
-        for(int i = 0; i < orders.Length; i++)
+        for(int i = 0; i < startingOrders.Length; i++)
         {
-            currentOrders.Add(orders[i]);
+            currentOrders.Add(startingOrders[i]);
         }
 
         // Populate orders to full if not already

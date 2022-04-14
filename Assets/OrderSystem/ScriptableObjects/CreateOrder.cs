@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CreateOrder : MonoBehaviour
 {
-
+    [SerializeField] private OrderHandler ticketOrderManager;
     public int difficulty = 1;
 
     private int orderNumber = 0;
@@ -17,7 +17,7 @@ public class CreateOrder : MonoBehaviour
         //Get difficulty score    
         createPatty(1);
 
-
+        assignOrderToTicket();
     }
 
     public void createPatty(int numOrder)
@@ -29,6 +29,12 @@ public class CreateOrder : MonoBehaviour
         ingredients = determineIngredients();
 
         PrintDetails();
+    }
+
+    private void assignOrderToTicket()
+    {
+        ticketOrderManager.orderNumber = orderNumber;
+        ticketOrderManager.ingredients = ingredients;
     }
 
     public void PrintDetails()

@@ -16,8 +16,8 @@ public class BurgerCooker : MonoBehaviour
     {
         if (topBurger.GetComponent<BurgerStager>() == null) { Debug.Log("Missing UpperStager"); };
         if (bottomBurger.GetComponent<BurgerStager>() == null) { Debug.Log("Missing LowerStager"); };
-
         grillingSound = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -39,6 +39,7 @@ public class BurgerCooker : MonoBehaviour
             else
             {
                 bottomBurger.GetComponent<BurgerStager>().StartGrilling();
+
             }
         }
     }

@@ -12,12 +12,12 @@ public class BurgerCombiner : MonoBehaviour
 
     public Transform parent;
     public GameObject parentGameObject;
+    public Material clear;
+    public Material clearGreen;
     [CanBeNull] public BurgerManager burgerManager;
-
 
     public int numberOfIngredients;
     public float ingredientoffset;
-    
     private Vector3 centerlocation;
 
     // Start is called before the first frame update
@@ -27,23 +27,37 @@ public class BurgerCombiner : MonoBehaviour
         ingredientoffset = 0.01f;
         centerlocation = this.transform.position;
         numberOfIngredients = 0;
-
-        //get Scripts?
-        
-
     }
-
 
     // Update is called once per frame
     void Update()
     {
+        centerlocation = this.transform.position;
+        if (numberOfIngredients > 6 || (burgerManager.hasTopBun && burgerManager.hasBottomBun)) 
+        {
+            //disable zone, 
+            this.GetComponent<Collider>().enabled = false;
+            this.GetComponent<MeshRenderer>().enabled = false;
+
+            Debug.Log("Filled plate with ingredients/finished burger");
+
+        }
+        else if (numberOfIngredients <= 5) 
+        {
+            //set  material to transparent green and reenable trigger/collider'
+            this.GetComponent<Collider>().enabled = true;
+            this.GetComponent<MeshRenderer>().enabled = true;
+
+        }
         //if numofIngredients is > 6 and or a top bun and bottom bun are together, consider it a finished burger and diasble trigger zone/make object clear
     }
 
     void OnTriggerEnter(Collider other)
     {
-        //check tag or name for type of ingredient
+        //check tag or name of object for type of ingredient
         GameObject ingredient = other.gameObject;
+        //grab ingredient script
+
 
         if (ingredient.CompareTag("Burger"))
         {
@@ -51,10 +65,11 @@ public class BurgerCombiner : MonoBehaviour
             burgerManager.AddToEndOfList(ingredient);
             burgerManager.hasPatty = true;
             burgerManager.numberOfPatties++;
+            numberOfIngredients++;
 
             //sets position and parent
             ingredient.transform.position = centerlocation;
-            ingredient.transform.SetParent(this.transform);
+            ingredient.transform.SetParent(parent);
             ingredient.GetComponent<Rigidbody>().isKinematic = true;
 
             //move zone up
@@ -68,10 +83,11 @@ public class BurgerCombiner : MonoBehaviour
             burgerManager.AddToEndOfList(ingredient);
             burgerManager.hasLettuce = true;
             burgerManager.numberOfLettucePieces++;
+            numberOfIngredients++;
 
             //sets position and parent
             ingredient.transform.position = centerlocation;
-            ingredient.transform.SetParent(this.transform);
+            ingredient.transform.SetParent(parent);
             ingredient.GetComponent<Rigidbody>().isKinematic = true;
 
             //move zone up
@@ -85,10 +101,11 @@ public class BurgerCombiner : MonoBehaviour
             burgerManager.AddToEndOfList(ingredient);
             burgerManager.hasCheese = true;
             burgerManager.numberOfCheeseSlices++;
+            numberOfIngredients++;
 
             //sets position and parent
             ingredient.transform.position = centerlocation;
-            ingredient.transform.SetParent(this.transform);
+            ingredient.transform.SetParent(parent);
             ingredient.GetComponent<Rigidbody>().isKinematic = true;
 
             //move zone up
@@ -101,10 +118,11 @@ public class BurgerCombiner : MonoBehaviour
             //talk to manager script to add gameobject to list for score measuring
             burgerManager.AddToEndOfList(ingredient);
             burgerManager.hasTopBun = true;
+            numberOfIngredients++;
 
             //sets position and parent
             ingredient.transform.position = centerlocation;
-            ingredient.transform.SetParent(this.transform);
+            ingredient.transform.SetParent(parent);
             ingredient.GetComponent<Rigidbody>().isKinematic = true;
 
             //move zone up
@@ -117,10 +135,11 @@ public class BurgerCombiner : MonoBehaviour
             //talk to manager script to add gameobject to list for score measuring
             burgerManager.AddToEndOfList(ingredient);
             burgerManager.hasBottomBun = true;
+            numberOfIngredients++;
 
             //sets position and parent
             ingredient.transform.position = centerlocation;
-            ingredient.transform.SetParent(this.transform);
+            ingredient.transform.SetParent(parent);
             ingredient.GetComponent<Rigidbody>().isKinematic = true;
 
             //move zone up

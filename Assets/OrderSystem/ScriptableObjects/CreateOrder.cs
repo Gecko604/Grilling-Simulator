@@ -13,7 +13,7 @@ public class CreateOrder : MonoBehaviour
     [SerializeField] private OrderHandler ticketOrderManager;
 
     public int difficulty = 1;
-    public int orderNumber = 01;
+    public int orderNumber = -1;
 
     [SerializeField] private List<string> ingredients;
 

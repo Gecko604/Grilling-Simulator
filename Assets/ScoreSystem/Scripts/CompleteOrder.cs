@@ -32,11 +32,10 @@ public class CompleteOrder : MonoBehaviour
             
             //Create transaction
             ////TODO: MealCompleted(bill amount, satisfaction level); 
-            scoreManager.CreateTransaction(5);
 
             //Delete Order from orderManager 
             //TODO: Give order the order ticket number
-            orderManager.CompleteOrder("defaultText");
+            orderManager.CompleteOrder(turnInTicket.GetComponentInParent<CreateOrder>().GetOrderNumber().ToString());
 
             //Destroy turned in order components => Reset variable references
             Destroy(turnInBurger);
@@ -52,25 +51,26 @@ public class CompleteOrder : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // If object touching is either a plated burger or a ticket, make the turn in object offending object
-        if (other.gameObject.tag == "Burger")
+        if (other.gameObject.tag == "plate")
         {
             turnInBurger = other.gameObject;
         }
 
-        if (other.gameObject.tag == "Ticket")
+        if (other.gameObject.tag == "ticket")
         {
             turnInTicket = other.gameObject;
         }
+        Debug.Log($"Touched by : {other.gameObject.name}");
     }
     private void OnTriggerExit(Collider other)
     {
    
-        if (other.gameObject.tag == "Burger")
+        if (other.gameObject.tag == "plate")
         {
             turnInBurger = null;
         }
 
-        if (other.gameObject.tag == "Ticket")
+        if (other.gameObject.tag == "ticket")
         {
             turnInTicket = null;
         }

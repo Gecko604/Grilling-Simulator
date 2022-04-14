@@ -21,7 +21,7 @@ public class VelocityTracker : MonoBehaviour
     {
         if (other.transform.tag == "Burger")
         {
-            print("on spat");
+            //print("on spat");
             onSpatula = true;
             burger = other.gameObject;
             burger.transform.parent = transform;
@@ -32,7 +32,7 @@ public class VelocityTracker : MonoBehaviour
     {
         if (other.transform.tag == "Burger")
         {
-            print("off spat");
+            //print("off spat");
             onSpatula = false;
             burger.transform.parent = null;
         }

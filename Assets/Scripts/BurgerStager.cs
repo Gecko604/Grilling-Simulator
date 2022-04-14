@@ -14,12 +14,12 @@ public class BurgerStager : MonoBehaviour
     public float heat = 0.0f;
     public bool onGrill = false;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
-
         if (gameObject.GetComponent<MeshRenderer>().material == null) { Debug.Log("Missing MeshRenderer"); return; };
-
     }
 
     // Update is called once per frame
@@ -56,7 +56,6 @@ public class BurgerStager : MonoBehaviour
 
     public IEnumerator LatentHeat()
     {
-        //Debug.Log("Let the meat burning commence, Isaiah 12:32");
         float internalHeat = 0;
         while (internalHeat < 5f)
         {

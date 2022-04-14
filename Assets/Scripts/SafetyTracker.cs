@@ -25,6 +25,7 @@ public class SafetyTracker : MonoBehaviour
     {
         if (other.transform.tag == "Hand")
         {
+            print("oof ouch my bones");
             OnGrill = true;
             StartCoroutine(ViolateSafety());
         }

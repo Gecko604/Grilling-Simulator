@@ -8,6 +8,7 @@ public class BurgerCooker : MonoBehaviour
     public GameObject topBurger;
     public GameObject bottomBurger;
 
+    private AudioSource grillingSound;
     //public BurgerStager UpperStager;
     //public BurgerStager LowerStager;
 
@@ -18,40 +19,45 @@ public class BurgerCooker : MonoBehaviour
         if (topBurger.GetComponent<BurgerStager>() == null) { Debug.Log("Missing UpperStager"); };
         if (bottomBurger.GetComponent<BurgerStager>() == null) { Debug.Log("Missing LowerStager"); };
 
-        Debug.Log("BurgerCooker.cs Start");
+        grillingSound = GetComponent<AudioSource>();
+        //Debug.Log("BurgerCooker.cs Start");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"OnTriggerEnter other: {other.gameObject}");
+        //Debug.Log($"OnTriggerEnter other: {other.gameObject}");
         if (other.transform.tag == "Grill")
         {
+            print("playing sound");
+            grillingSound.Play();
             if (GetHalf())
             {
-                Debug.Log("Upper start grilling");
+                //Debug.Log("Upper start grilling");
                 topBurger.GetComponent<BurgerStager>().StartGrilling();
-                Debug.Log("Upper started grilling");
+                //Debug.Log("Upper started grilling");
             }
             else
             {
-                Debug.Log("Lower start grilling");
+                //Debug.Log("Lower start grilling");
                 bottomBurger.GetComponent<BurgerStager>().StartGrilling();
-                Debug.Log("Lower started grilling");
+                //Debug.Log("Lower started grilling");
             }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log($"OnTriggerExit other: {other.gameObject}");
+        //Debug.Log($"OnTriggerExit other: {other.gameObject}");
         if (other.transform.tag == "Grill")
         {
+            print("stopping sound");
+            grillingSound.Stop();
             bottomBurger.GetComponent<BurgerStager>().StopGrilling();
             topBurger.GetComponent<BurgerStager>().StopGrilling();
         }

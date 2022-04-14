@@ -5,36 +5,33 @@ using UnityEngine;
 
 public class CreateOrder : MonoBehaviour
 {
-    [SerializeField] private OrderHandler ticketOrderManager;
-    public int difficulty = 1;
 
-    private int orderNumber = 0;
-    [SerializeField] private string patty;
+    [SerializeField] private int queuePosition = -1;
+
+
+    [SerializeField] public ScoreManager scoreManager;
+    [SerializeField] private OrderHandler ticketOrderManager;
+
+    public int difficulty = 1;
+    public int orderNumber = 01;
+
     [SerializeField] private List<string> ingredients;
-    // Generate a random order based off difficulty - 1 = easy, 2 = medium, 3 = hard
+
     void Start()
     {
-        //Get difficulty score    
-        createPatty(1);
-
-        assignOrderToTicket();
     }
-
-    public void createPatty(int numOrder)
+    public void generateOrder(int numOrder)
     {
-        //Create a order with order #, patty and ingredients
+        //Create a order with given order #
         orderNumber = numOrder;
-
-        patty = determinePatty();
+        //Assign difficulty from score manager 
+        difficulty = scoreManager.difficulty;
+        //Assign ingredients
         ingredients = determineIngredients();
 
-        PrintDetails();
-    }
+        // PrintDetails();
 
-    private void assignOrderToTicket()
-    {
-        ticketOrderManager.orderNumber = orderNumber;
-        ticketOrderManager.ingredients = ingredients;
+        ticketOrderManager.setUpTemplate();
     }
 
     public void PrintDetails()
@@ -44,10 +41,8 @@ public class CreateOrder : MonoBehaviour
 
         foreach (string ele in ingredients)
         {
-            ingredientList += $"{ele}";
+            ingredientList += $"{ele}\n";
         }
-        
-        Debug.Log($"-----------------\n Order Number: {orderNumber}\n Patty Cooked Value: {patty}\n Ingredients: {ingredientList}\n-----------------\n");
     }
 
 
@@ -59,75 +54,69 @@ public class CreateOrder : MonoBehaviour
 
         if (difficulty == 1)
         {
-            pattyCookedStates.Add("Medium Rare");
+            pattyCookedStates.Add("medium");
         }
         if (difficulty == 2)
         {
-            pattyCookedStates.Add("Medium Rare");
-            pattyCookedStates.Add("Well Done");
+            pattyCookedStates.Add("uncooked");
+            pattyCookedStates.Add("medium");
+            pattyCookedStates.Add("well done");
+            pattyCookedStates.Add("overcooked");
         }
         if (difficulty == 3)
         {
-            pattyCookedStates.Add("Raw");
-            pattyCookedStates.Add("Medium Rare");
-            pattyCookedStates.Add("Well Done");
-            pattyCookedStates.Add("Overcooked");
+            pattyCookedStates.Add("uncooked");
+            pattyCookedStates.Add("raw");
+            pattyCookedStates.Add("medium");
+            pattyCookedStates.Add("well done");
+            pattyCookedStates.Add("overcooked");
+            pattyCookedStates.Add("burnt");
         }
         int num = UnityEngine.Random.Range(0, pattyCookedStates.Count - 1);
-        //Debug.Log($"Index: {num}");
-        //Debug.Log($"Total List: {pattyCookedStates.ToString()}");
-        string selectedPatty = pattyCookedStates[num];
-       // Debug.Log($"Patty State: {selectedPatty}");
-        //Pick a random patty from the list of possible states
 
-        return selectedPatty;
+        return pattyCookedStates[num];
     }
 
     private List<string> determineIngredients()
     {
         List<string> pattyIngredients = new List<string>();
 
+        pattyIngredients.Add("bun");
         // Generate ingredient requirements based off difficulty - 1 = easy, 2 = medium, 3 = hard
         if (difficulty == 1)
+            // Only cheese burgers :)
         {
-            pattyIngredients.Add("Bun");
+            pattyIngredients.Add("cheese");
         }
         if (difficulty == 2)
+            //Two toppings, one is random
         {
-            pattyIngredients.Add("Bun");
-            pattyIngredients.Add("Cheese");
+            pattyIngredients.Add("lettuce");
+            pattyIngredients.Add(getRandomIngredient());
         }
         if (difficulty == 3)
+           // Three toppings, one is an additional patty
         {
-            pattyIngredients.Add("Bun");
-            pattyIngredients.Add("Cheese");
-            pattyIngredients.Add("Tomato");
-            pattyIngredients.Add("Lettuce");
+            pattyIngredients.Add(getRandomIngredient());
+            pattyIngredients.Add(determinePatty());
+            pattyIngredients.Add(getRandomIngredient());
         }
 
-        //If burgers have more than patty and bun
-        if (difficulty > 1)
-        {
-            //Generate random index to remove
-            int removedIndex = UnityEngine.Random.Range(-1, pattyIngredients.Count);
+        //Always end burger on patty and bun
+        pattyIngredients.Add(determinePatty());
+        pattyIngredients.Add("bun");
 
-            //Debug.Log($"Removed Index: {removedIndex}");
-            //if index == -1, then remove none
-            if (removedIndex == -1) { return ingredients;}
-
-            //otherwise, remove at index 
-            printList(pattyIngredients);
-            pattyIngredients.RemoveAt(removedIndex);
-            printList(pattyIngredients);
-
-        }
         //return ingredient list
         return pattyIngredients;
     }
 
-    public string GetPatty()
+    private string getRandomIngredient()
     {
-        return patty;
+        List<string> candidates = new List<string> { "cheese", "lettuce", "tomato", "bun" };
+
+        int num = UnityEngine.Random.Range(0, candidates.Count);
+
+        return candidates[num];
     }
 
     public List<string> GetIngredients()
@@ -138,13 +127,5 @@ public class CreateOrder : MonoBehaviour
     public int GetOrderNumber()
     {
         return orderNumber;
-    }
-
-    private void printList(List<string> list)
-    {
-        foreach (string ele in list)
-        {
-            //Debug.Log(ele);
-        }
     }
 }

@@ -6,10 +6,12 @@ public class CompleteOrder : MonoBehaviour
 {
     [SerializeField] 
     private ScoreManager scoreManager;
+    [SerializeField]
     private orderManager orderManager;
 
     [SerializeField] 
     private GameObject turnInBurger = null;
+    [SerializeField]
     private GameObject turnInTicket = null;
 
     
@@ -17,7 +19,7 @@ public class CompleteOrder : MonoBehaviour
     void Start()
     {
         //Get reference to HUD's score manager
-        scoreManager = GameObject.Find("HUD").GetComponent<ScoreManager>();
+        //scoreManager = GameObject.Find("HUD").GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame

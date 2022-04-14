@@ -1,67 +1,84 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class OrderHandler : MonoBehaviour
 {
+    public GameObject textTicketNumber;
+    public GameObject[] imageElements;
+    public GameObject[] textElements;
+    public Material[] imageMaterials;
 
-    [SerializeField]
-    public List<string> burgerTemplate = null;
-    public List<string> ingredients = null;
-    private int maxIngredients = 6;
-    private string patty = null;
-    public int orderNumber = -1;
-
-
-
-
-    [SerializeField] public GameObject textPrefab = null;
-    [SerializeField] public GameObject imagePrefab = null;
-    [SerializeField] public GameObject textParent = null;
-    [SerializeField] public GameObject imageParent = null;
+    public CreateOrder order;
 
     // Start is called before the first frame update
     void Start()
     {
         //get CreateOrder reference
         CreateOrder order = gameObject.GetComponent<CreateOrder>();
-
-        // Set up order card variables
-        patty = order.GetPatty();
-        ingredients = order.GetIngredients();
-        orderNumber = order.GetOrderNumber();
-
-        setUpTemplate();
-
     }
 
     public void setUpTemplate()
     {
-        //Set up the order template card based off of ingredients
 
-        // n ingredients
-        int ingredientCount = ingredients.Count;
+        //Assign Ticket The Number Order 
+        textTicketNumber.GetComponent<TextMeshProUGUI>().text = "# " + handleOrderNumber(order.GetOrderNumber());
 
-        //If we have a bun, we need to have a bottom bun as well
-        if (ingredients.Contains("Bun"))
-        {
-            ingredients.Add("Bun");
-            ingredientCount += 1;
-        }
-    }
-
-    private void spawnOrderElements()
-    {
-        Vector3 textStartingPos = new Vector3(4.7f, 0.35f, 0f);
-        Vector3 imageStartingPos = new Vector3(0f, 0.65f, 0f);
-        //Create UI elements && text on order ticket
+        //Create a list of strings from the order's required ingredients
+        List<string> ingredients = order.GetIngredients();
+        
+        // Add list values to UI text elements
         for (int i = 0; i < ingredients.Count; i++)
-        { 
-            GameObject text = Instantiate(textPrefab, textParent.transform);
-            text.transform.position = new Vector3(textStartingPos.x , textStartingPos.y, textStartingPos.z);
-            GameObject image = Instantiate(imagePrefab, imageParent.transform);
+        {
+
+            Debug.Log($"Logging: Ingredient is : {ingredients[i]}");
+            textElements[i].GetComponent<TextMeshProUGUI>().text = ingredients[i];
+            imageElements[i].GetComponent<RawImage>().material = retMaterial(ingredients[i]);
+        }
+
+
+    }
+
+    private string handleOrderNumber(int orderNum)
+    {
+        if (orderNum > 9)
+        {
+            return $"{orderNum}";
+        } else
+        {
+            return $"0{orderNum}";
         }
     }
+    private Material retMaterial(string matName)
+    {
+        switch (matName)
+        {
+            case "bun": 
+                return imageMaterials[0];
+            case "lettuce":
+                return imageMaterials[1];
+            case "uncooked":
+                return imageMaterials[2];
+            case "raw":
+                return imageMaterials[3];
+            case "medium":
+                return imageMaterials[4];
+            case "well done":
+                return imageMaterials[5];
+            case "overcooked":
+                return imageMaterials[6];
+            case "burnt":
+                return imageMaterials[7];
+            case "cheese":
+                return imageMaterials[8];
+            case "tomato":
+                return imageMaterials[9];
+        }
+        return null;
+    }
+
     // Update is called once per frame
     void Update()
     {

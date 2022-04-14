@@ -29,6 +29,8 @@ public class ScoreManager : MonoBehaviour
     public Color refundRed = Color.red;
     public Color valueMealGreen = Color.green;
 
+    [Header("Game Difficulty")]
+    public int difficulty = 1;
     public void Start()
     {
         UpdateScore();

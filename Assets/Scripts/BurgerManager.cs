@@ -16,6 +16,7 @@ public class BurgerManager : MonoBehaviour
     public int numberOfPatties;
     public Boolean hasTopBun;
     public Boolean hasBottomBun;
+    public int numberOfIngredients;
 
     public LinkedList<GameObject> ingredientList = new LinkedList<GameObject>();
 

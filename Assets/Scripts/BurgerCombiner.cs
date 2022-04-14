@@ -65,6 +65,7 @@ public class BurgerCombiner : MonoBehaviour
             burgerManager.AddToEndOfList(ingredient);
             burgerManager.hasPatty = true;
             burgerManager.numberOfPatties++;
+            burgerManager.numberOfIngredients++;
             numberOfIngredients++;
 
             //sets position and parent
@@ -83,6 +84,7 @@ public class BurgerCombiner : MonoBehaviour
             burgerManager.AddToEndOfList(ingredient);
             burgerManager.hasLettuce = true;
             burgerManager.numberOfLettucePieces++;
+            burgerManager.numberOfIngredients++;
             numberOfIngredients++;
 
             //sets position and parent
@@ -101,6 +103,7 @@ public class BurgerCombiner : MonoBehaviour
             burgerManager.AddToEndOfList(ingredient);
             burgerManager.hasCheese = true;
             burgerManager.numberOfCheeseSlices++;
+            burgerManager.numberOfIngredients++;
             numberOfIngredients++;
 
             //sets position and parent
@@ -118,6 +121,7 @@ public class BurgerCombiner : MonoBehaviour
             //talk to manager script to add gameobject to list for score measuring
             burgerManager.AddToEndOfList(ingredient);
             burgerManager.hasTopBun = true;
+            burgerManager.numberOfIngredients++;
             numberOfIngredients++;
 
             //sets position and parent
@@ -135,6 +139,7 @@ public class BurgerCombiner : MonoBehaviour
             //talk to manager script to add gameobject to list for score measuring
             burgerManager.AddToEndOfList(ingredient);
             burgerManager.hasBottomBun = true;
+            burgerManager.numberOfIngredients++;
             numberOfIngredients++;
 
             //sets position and parent

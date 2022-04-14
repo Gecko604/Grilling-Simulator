@@ -27,31 +27,15 @@ public class Ingredient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void OnTriggerEnter(Collider other)
     {
-        GameObject otherObject = other.gameObject;
-        Debug.Log($"OnTriggerEnter other: {otherObject}");
-        if (other.gameObject.CompareTag("trigger zone")) //if combine zone, add this to burger parent object
-        {
-            isInCombineZone = true;
-            if (!inHand)
-            {
-                //set to center of trigger area
-                moveToCenter(otherObject);
-                this.transform.SetParent(burgerParent);
-                otherObject.SetActive(false);
-            }
-        }
+        
     }
 
-    //sets this position to position of zone
-    void moveToCenter(GameObject other)
-    {
-        this.transform.position = other.transform.position;
-    }
+
+    //on let go, make object no longer kinematic
 
 
 

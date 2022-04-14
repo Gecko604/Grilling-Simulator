@@ -8,7 +8,11 @@ TagManager:
   - Grillable
   - Grill
   - Plate
-  - Ingredient
+  - SnapZone
+  - TopBun
+  - BottomBun
+  - Cheese
+  - Lettuce
   layers:
   - Default
   - TransparentFX

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 217580109}
   m_Layer: 0
   m_Name: trigger zone
-  m_TagString: Untagged
+  m_TagString: SnapZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,20 +170,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 1572998188}
-  nextZone: {fileID: 0}
-  hasLettuce: 0
-  numberOfLettucePieces: 0
-  hasCheese: 0
-  numberOfCheeseSlices: 0
-  hasPatty: 0
-  numberOfPatties: 0
-  hasTopBun: 0
-  topBunPosition: 0
-  hasBottomBun: 0
-  bottomBunPosition: 0
+  parentGameObject: {fileID: 1572998187}
+  burgerManager: {fileID: 1572998192}
   numberOfIngredients: 0
   ingredientoffset: 0
-  hasIngredient: 0
 --- !u!65 &217580110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -283,6 +273,11 @@ Transform:
   m_Father: {fileID: 408713976}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &257746308 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8754414280453880821, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+  m_PrefabInstance: {fileID: 1363861024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &408713975
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +308,6 @@ Transform:
   - {fileID: 1450381600}
   - {fileID: 1059381525}
   - {fileID: 219006509}
-  - {fileID: 1572998188}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -428,7 +422,7 @@ GameObject:
   - component: {fileID: 917146663}
   m_Layer: 0
   m_Name: Lettuce
-  m_TagString: Ingredient
+  m_TagString: Lettuce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5548,6 +5542,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 219006509}
     m_Modifications:
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1922174226}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_isKinematic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Rigidbody, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1540953576704907499, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -5702,7 +5736,7 @@ GameObject:
   - component: {fileID: 1031992915}
   m_Layer: 0
   m_Name: Cheese
-  m_TagString: Ingredient
+  m_TagString: Cheese
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6035,6 +6069,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 219006509}
     m_Modifications:
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 257746308}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_isKinematic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Rigidbody, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1540953576704907499, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -6106,6 +6168,10 @@ PrefabInstance:
     - target: {fileID: 8430168519289121727, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_Name
       value: Burger (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430168519289121727, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: m_TagString
+      value: Burger
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3295329129025130741, guid: 7ae18a0314c684045ad499021895973f, type: 3}
@@ -6275,6 +6341,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 219006509}
     m_Modifications:
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1922174222}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1722861613}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_isKinematic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Rigidbody, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1540953576704907499, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -6346,6 +6456,10 @@ PrefabInstance:
     - target: {fileID: 8430168519289121727, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_Name
       value: Burger (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430168519289121727, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: m_TagString
+      value: Burger
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3295329129025130741, guid: 7ae18a0314c684045ad499021895973f, type: 3}
@@ -6475,13 +6589,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572998187}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.051, y: 2.27, z: -0.3851}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.527, y: 0.521, z: 2.3011074}
   m_LocalScale: {x: 0.25, y: 0.01, z: 0.25}
   m_Children:
   - {fileID: 217580108}
-  m_Father: {fileID: 408713976}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1572998189
 BoxCollider:
@@ -6557,6 +6671,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c336a45c8861a7409f6aff98d46225e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerZone: {fileID: 217580107}
+  hasLettuce: 0
+  numberOfLettucePieces: 0
+  hasCheese: 0
+  numberOfCheeseSlices: 0
+  hasPatty: 0
+  numberOfPatties: 0
+  hasTopBun: 0
+  hasBottomBun: 0
 --- !u!114 &1572998193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6762,7 +6885,7 @@ GameObject:
   - component: {fileID: 1721430575}
   m_Layer: 0
   m_Name: TopBun
-  m_TagString: Ingredient
+  m_TagString: TopBun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6988,6 +7111,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8430168519289121727, guid: 7ae18a0314c684045ad499021895973f, type: 3}
   m_PrefabInstance: {fileID: 1420330182}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &1722861613 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8754414280453880821, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+  m_PrefabInstance: {fileID: 1420330182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1722861615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7174,6 +7302,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+--- !u!1 &1922174222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8430168519289121727, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+  m_PrefabInstance: {fileID: 1000564347}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1922174226 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8754414280453880821, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+  m_PrefabInstance: {fileID: 1000564347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2041432691
 GameObject:
   m_ObjectHideFlags: 0
@@ -7302,7 +7440,7 @@ GameObject:
   - component: {fileID: 2131525954}
   m_Layer: 0
   m_Name: BottomBun
-  m_TagString: Ingredient
+  m_TagString: BottomBun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

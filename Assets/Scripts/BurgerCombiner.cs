@@ -1,93 +1,154 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 
 public class BurgerCombiner : MonoBehaviour
 {
+    // Develop better system for moving trigger zone up and add ingredients to list,
+    // remove from list as objects are removed, keep only top object interactable and removable
+
     public Transform parent;
-    public GameObject nextZone;
+    public GameObject parentGameObject;
+    [CanBeNull] public BurgerManager burgerManager;
 
-    // Develop better system for moving trigger zone up and add ingredients to list, remove from list as objects are removed, keep only top object interactable and removable
 
-
-    [Header("Ingredients of Burger")]
-    public Boolean hasLettuce;
-    public int numberOfLettucePieces;
-    public Boolean hasCheese;
-    public int numberOfCheeseSlices;
-    public Boolean hasPatty;
-    public int numberOfPatties;
-    public Boolean hasTopBun;
-    public int topBunPosition;
-    public Boolean hasBottomBun;
-    public int bottomBunPosition;
-    
     public int numberOfIngredients;
     public float ingredientoffset;
-    public Boolean hasIngredient;
+    
     private Vector3 centerlocation;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Startup of BurgerCombiner");
-        hasLettuce = false;
-        numberOfLettucePieces = 0;
-        hasCheese = false;
-        numberOfCheeseSlices = 0;
-        hasTopBun = false;
-        hasBottomBun = false;
         ingredientoffset = 0.01f;
+        centerlocation = this.transform.position;
+        numberOfIngredients = 0;
+
+        //get Scripts?
+        
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        centerlocation = new Vector3(this.transform.position.x, this.transform.position.y + ingredientoffset,
-            this.transform.position.z);
-        //if both topbun and bottombun are in burger or surpass 5 ingredients, stop allowing combination and activate throwable/interactable for whole object
-        if (numberOfIngredients >= 5 || (hasTopBun && hasBottomBun))
-        {
-            //disable the ability for ingredients to be added until top ingredient is removed
-        }//otherwise maintain trigger zone or trigger ability of object
-        else
-        {
-
-        }
-
-        if (hasIngredient)
-        {
-            nextZone.SetActive(true);
-        }
+        //if numofIngredients is > 6 and or a top bun and bottom bun are together, consider it a finished burger and diasble trigger zone/make object clear
     }
 
     void OnTriggerEnter(Collider other)
     {
+        //check tag or name for type of ingredient
         GameObject ingredient = other.gameObject;
-        if (ingredient.CompareTag("Ingredient"))
+
+        if (ingredient.CompareTag("Burger"))
         {
+            //talk to manager script to add gameobject to list for score measuring
+            burgerManager.AddToEndOfList(ingredient);
+            burgerManager.hasPatty = true;
+            burgerManager.numberOfPatties++;
+
+            //sets position and parent
             ingredient.transform.position = centerlocation;
             ingredient.transform.SetParent(this.transform);
-            hasIngredient = true;
-            hasPatty = true;
             ingredient.GetComponent<Rigidbody>().isKinematic = true;
-            //reference other script to state position and confirm lettuce is on burger
+
+            //move zone up
+            MoveZoneUp();
+            ingredientoffset = 0.02f;
+        }
+
+        if (ingredient.CompareTag("Lettuce"))
+        {
+            //talk to manager script to add gameobject to list for score measuring
+            burgerManager.AddToEndOfList(ingredient);
+            burgerManager.hasLettuce = true;
+            burgerManager.numberOfLettucePieces++;
+
+            //sets position and parent
+            ingredient.transform.position = centerlocation;
+            ingredient.transform.SetParent(this.transform);
+            ingredient.GetComponent<Rigidbody>().isKinematic = true;
+
+            //move zone up
+            MoveZoneUp();
+            ingredientoffset = 0.02f;
+        }
+
+        if (ingredient.CompareTag("Cheese"))
+        {
+            //talk to manager script to add gameobject to list for score measuring
+            burgerManager.AddToEndOfList(ingredient);
+            burgerManager.hasCheese = true;
+            burgerManager.numberOfCheeseSlices++;
+
+            //sets position and parent
+            ingredient.transform.position = centerlocation;
+            ingredient.transform.SetParent(this.transform);
+            ingredient.GetComponent<Rigidbody>().isKinematic = true;
+
+            //move zone up
+            MoveZoneUp();
+            ingredientoffset = 0.02f;
+        }
+        //Top Bun
+        if (ingredient.CompareTag("TopBun"))
+        {
+            //talk to manager script to add gameobject to list for score measuring
+            burgerManager.AddToEndOfList(ingredient);
+            burgerManager.hasTopBun = true;
+
+            //sets position and parent
+            ingredient.transform.position = centerlocation;
+            ingredient.transform.SetParent(this.transform);
+            ingredient.GetComponent<Rigidbody>().isKinematic = true;
+
+            //move zone up
+            MoveZoneUp();
+            ingredientoffset = 0.02f;
+        }
+
+        if (ingredient.CompareTag("BottomBun"))
+        {
+            //talk to manager script to add gameobject to list for score measuring
+            burgerManager.AddToEndOfList(ingredient);
+            burgerManager.hasBottomBun = true;
+
+            //sets position and parent
+            ingredient.transform.position = centerlocation;
+            ingredient.transform.SetParent(this.transform);
+            ingredient.GetComponent<Rigidbody>().isKinematic = true;
+
+            //move zone up
+            MoveZoneUp();
+            ingredientoffset = 0.02f;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void MoveZoneUp()
     {
-        GameObject ingredient = other.gameObject;
-        if (ingredient.CompareTag("Ingredient"))
-        {
-            ingredient.transform.SetParent(null);
-            ingredient.GetComponent<Rigidbody>().isKinematic = false;
-            hasIngredient = false;
-            hasPatty = false;
-        }
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + ingredientoffset, this.transform.position.z);
+        numberOfIngredients++;
     }
+
+    void MoveZoneDown()
+    {
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - ingredientoffset, this.transform.position.z);
+        numberOfIngredients--;
+    }
+
+    //sets this position to position of zone
+    void moveToCenter(GameObject other)
+    {
+        other.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.01f, this.transform.position.z);
+    }
+
+    //have some system if the top ingredient is grabbed move zone down and remove that ingredient from the list
+    
+
 }
 

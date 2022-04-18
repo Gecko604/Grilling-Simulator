@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Burger
+  - Grill
+  - Grillable
+  - Hand
+  - plate
+  - ticket
   layers:
   - Default
   - TransparentFX

@@ -247,7 +247,7 @@ MonoBehaviour:
   refundRed: {r: 1, g: 0, b: 0, a: 1}
   valueMealGreen: {r: 0, g: 1, b: 0, a: 1}
   penalty: -5
-  difficulty: 2
+  difficulty: 1
 --- !u!1 &30950985
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 19291679}
-  orderManager: {fileID: 1555672922}
+  orderManager: {fileID: 0}
   turnInBurger: {fileID: 0}
   turnInTicket: {fileID: 0}
 --- !u!1001 &147478271

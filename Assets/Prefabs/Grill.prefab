@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3412540785898600364}
   - component: {fileID: 1809848046161670054}
   - component: {fileID: 8266945050749958195}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grilltop
   m_TagString: Grill
   m_Icon: {fileID: 0}

@@ -8,15 +8,12 @@ public class BurgerCooker : MonoBehaviour
     public GameObject topBurger;
     public GameObject bottomBurger;
 
-    private AudioSource grillingSound;
-
 
     // Start is called before the first frame update
     void Start()
     {
         if (topBurger.GetComponent<BurgerStager>() == null) { Debug.Log("Missing UpperStager"); };
         if (bottomBurger.GetComponent<BurgerStager>() == null) { Debug.Log("Missing LowerStager"); };
-        grillingSound = GetComponent<AudioSource>();
 
     }
 
@@ -30,8 +27,6 @@ public class BurgerCooker : MonoBehaviour
     {
         if (other.transform.tag == "Grill")
         {
-            print("playing sound");
-            grillingSound.Play();
             if (GetHalf())
             {
                 topBurger.GetComponent<BurgerStager>().StartGrilling();
@@ -48,8 +43,6 @@ public class BurgerCooker : MonoBehaviour
     {
         if (other.transform.tag == "Grill")
         {
-            print("stopping sound");
-            grillingSound.Stop();
             bottomBurger.GetComponent<BurgerStager>().StopGrilling();
             topBurger.GetComponent<BurgerStager>().StopGrilling();
         }

@@ -2718,6 +2718,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 706064405364128843, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1540953576704907499, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2762,9 +2766,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1789624438525275582, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373126461064592004, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593775286486253669, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183011076333110735, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8430168519289121727, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_Name
       value: Burger
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020658075190701766, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ae18a0314c684045ad499021895973f, type: 3}

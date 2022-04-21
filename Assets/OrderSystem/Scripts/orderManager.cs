@@ -18,7 +18,7 @@ public class orderManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("attemptSpawnOrder");
+        //StartCoroutine("attemptSpawnOrder");
     }
 
     private void spawnOrder()
@@ -66,10 +66,10 @@ public class orderManager : MonoBehaviour
         }
     }
 
-    IEnumerator attemptSpawnOrder()
-    {
-        yield return new WaitForSeconds(5);
-        spawnOrder();
-        StartCoroutine("attemptSpawnOrder");
-    }
+  //  IEnumerator attemptSpawnOrder()
+    //{
+      //  yield return new WaitForSeconds(5);
+        //spawnOrder();
+        //StartCoroutine("attemptSpawnOrder");
+    //}
 }

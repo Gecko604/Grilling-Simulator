@@ -10,6 +10,16 @@ TagManager:
   - Hand
   - plate
   - ticket
+  - Cheese
+  - Lettuce
+  - TopBun
+  - SnapZone
+  - BottomBun
+  - SeatPos
+  - WaitPos
+  - LinePos
+  - BossPos
+  - ExitPos
   layers:
   - Default
   - TransparentFX

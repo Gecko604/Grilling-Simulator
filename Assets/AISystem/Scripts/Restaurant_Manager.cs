@@ -50,7 +50,6 @@ public class Restaurant_Manager : MonoBehaviour
             StartCoroutine(NewCustomer());
         }
 
-
     }
 
     private void spawnCustomer()

@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd56f5a0aceb0424fa5a37de83c58cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  scoreGrade: {fileID: 0}
+  scoreText: {fileID: 9087174431113992386}
+  scoreGrade: {fileID: 5047223234575457500}
   maxLevelScore: 0
   numOrders: 0
   happyCustomers: 0
@@ -127,6 +127,8 @@ MonoBehaviour:
   textPrefab: {fileID: 8766780083961801238, guid: fa78d251a247ba44e83974e391b968eb, type: 3}
   refundRed: {r: 0.58431375, g: 0.08224297, b: 0, a: 1}
   valueMealGreen: {r: 0, g: 0.58431375, b: 0.003921569, a: 1}
+  penalty: -5
+  difficulty: 1
 --- !u!1 &7826206388050054317
 GameObject:
   m_ObjectHideFlags: 0

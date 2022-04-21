@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class SafetyTracker : MonoBehaviour
 {
+
+    [Header("Trigger Variables")]
     public bool OnGrill = false;
+
+    [Header("Penalty Tracking")]
     public ScoreManager trackPenalty;
-    public AudioSource grillSound;
     
     // Start is called before the first frame update
     void Start()
     {
         trackPenalty = FindObjectOfType<ScoreManager>();
-        grillSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,7 +27,6 @@ public class SafetyTracker : MonoBehaviour
     {
         if (other.transform.tag == "Hand")
         {
-            print("oof ouch my bones");
             OnGrill = true;
             StartCoroutine(ViolateSafety());
         }
@@ -42,7 +43,6 @@ public class SafetyTracker : MonoBehaviour
         while(OnGrill)
         {
             trackPenalty.ApplyPenalty();
-            grillSound.Play(0);
             yield return new WaitForSeconds(1);
         }
     }

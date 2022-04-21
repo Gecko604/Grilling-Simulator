@@ -5,8 +5,12 @@ using UnityEngine;
 public class GrillSoundController : MonoBehaviour
 {
 
-    [Header("Burger Sizzles")]
-    public AudioClip sizzleOne;
+    [Header("Sounds")]
+    public AudioClip touchGrill;
+
+    [Header("Prefab")]
+    public GameObject soundPlayer;
+
 
 
     // Start is called before the first frame update
@@ -18,15 +22,14 @@ public class GrillSoundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void TouchGrill(Collider other)
     {
-        if(other.transform.tag == "Burger")
-        {
-            print("Burger Placed");
-            AudioSource.PlayClipAtPoint(sizzleOne, other.transform.position, 1f);
-        }
+        GameObject scream = Instantiate(soundPlayer, other.transform.position, other.transform.rotation) as GameObject;
+        scream.GetComponent<AudioSource>().PlayOneShot(touchGrill);
+        while(scream.GetComponent<AudioSource>().isPlaying)
+        Destroy(scream);
     }
 }

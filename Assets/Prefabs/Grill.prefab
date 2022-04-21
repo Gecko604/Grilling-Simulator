@@ -123,7 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03eadbd17ee16cf4596a4c124571cfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizzleOne: {fileID: 8300000, guid: 456502ab46c05ab46a0de7c0fa62d6a8, type: 3}
+  touchGrill: {fileID: 8300000, guid: a2623788a4605da4aaa2711a88445b9d, type: 3}
+  soundPlayer: {fileID: 1538523757345555892, guid: 15d2f8f937e661c4e8728f951ab26eb4, type: 3}
 --- !u!1 &2538540795895162320
 GameObject:
   m_ObjectHideFlags: 0

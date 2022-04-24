@@ -19,6 +19,8 @@ public class BurgerManager : MonoBehaviour
     public int numberOfIngredients;
 
     public LinkedList<GameObject> ingredientList = new LinkedList<GameObject>();
+    public LinkedList<string> ingredientNameList = new LinkedList<string>();
+    public int listLength;
 
 
     // Start is called before the first frame update
@@ -30,12 +32,19 @@ public class BurgerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        listLength = ingredientNameList.Count;
     }
 
+    //adds gameobject to end of linked list
     public void AddToEndOfList(GameObject ingredient)
     {
         ingredientList.AddLast(ingredient);
+    }
+
+    //adds gameObject name to end of list
+    public void AddNameToEndOfList(String name)
+    {
+        ingredientNameList.AddLast(name);
     }
 
     public void RemoveFromEndOfList()

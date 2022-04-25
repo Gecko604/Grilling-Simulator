@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1062076740727076903}
   - component: {fileID: 9100824389967025832}
   - component: {fileID: 4296512260418742564}
+  - component: {fileID: -333058696610475224}
   m_Layer: 0
   m_Name: Burger
   m_TagString: Burger
@@ -151,10 +152,46 @@ MonoBehaviour:
   restoreOriginalParent: 0
   onPickUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -333058696610475224}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onDetachFromHand:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -333058696610475224}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8754414280453880821}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_isKinematic
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHeldUpdate:
     m_PersistentCalls:
       m_Calls: []
@@ -186,6 +223,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topBurger: {fileID: 8777634203909454965}
   bottomBurger: {fileID: 8563169682392229963}
+--- !u!114 &-333058696610475224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430168519289121727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31149632f84eb4e4b8295b5d18e21bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inHand: 0
 --- !u!1001 &8435525898745823524
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class Restaurant_Manager : MonoBehaviour
     [SerializeField] private List<GameObject> bossPath = new List<GameObject>(4);
     [SerializeField] private List<GameObject> ExitPath = new List<GameObject>(4);
 
-    [Header("Position Elements")]
+    [Header("Customer Elements")]
     // Lists of positions containing customers - do modify
     [SerializeField] public List<GameObject> line = new List<GameObject>();
     [SerializeField] public List<GameObject> waiting = new List<GameObject>();
@@ -38,10 +38,15 @@ public class Restaurant_Manager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+       
+    }
+
     IEnumerator NewCustomer()
     {
         float delay = 3;
-        Debug.Log($"Spawning a new customer in ({delay}) seconds!");
+        //Debug.Log($"Spawning a new customer in ({delay}) seconds!");
         // How long to wait before code below is called
         yield return new WaitForSeconds(delay);
         spawnCustomer();
@@ -52,6 +57,16 @@ public class Restaurant_Manager : MonoBehaviour
 
     }
 
+    // Return True if all customers in line are waiting
+    private bool checkLineReady()
+    {
+        for (int i = 0; i < line.Count; i++)
+        {
+            if (line[i].GetComponent<AIBehavior>().currentTask != AIBehavior.CustomerState.Waiting) { return false; }
+        }
+
+        return true;
+    }
     private void spawnCustomer()
     {
 
@@ -67,7 +82,6 @@ public class Restaurant_Manager : MonoBehaviour
         customerData.waitPosition = line.IndexOf(newCustomer);
         //Get customer's line positions's Vector3
         Vector3 targetPosition = new Vector3(linePositions[customerData.waitPosition].transform.position.x, newCustomer.transform.position.y ,linePositions[customerData.waitPosition].transform.position.z);
-
         // Give customer target position of thier spot in line
         customerData.positionToMoveTo = targetPosition;
     }
@@ -83,10 +97,10 @@ public class Restaurant_Manager : MonoBehaviour
             if (waiting.Count < 3)
             {
                 // Remove me from line
-                line.Remove(readyCustomer);
+                //line.Remove(readyCustomer);
 
                 // Move everyone in wait line up one
-                moveLineUp();
+                //moveLineUp();
 
                 // Move me to waiting line
                 waiting.Add(readyCustomer);
@@ -126,8 +140,23 @@ public class Restaurant_Manager : MonoBehaviour
 
     }
 
+    // Called by customers after moving into place - requests manager evalute if line should move
+    public void EvaluateLine()
+    {
+        // If line is ready move everyone up one
+        if (checkLineReady() && waiting.Count != 3)
+        {
+            moveLineUp();
+        } else
+        {
+            if (!checkLineReady()) { Debug.Log($"Reason: CheckLineReady() returned False!"); }
+            if (waiting.Count == 3) { Debug.Log($"Reason: Waiting Line is Full!"); }
+        }
+    }
     private void moveLineUp()
-    {   // After removing firstPos, index 1 -> N : must be moved down an index on dataScript and move position to show 
+    {
+        Debug.Log(line.Count);
+        // After removing firstPos, index 1 -> N : must be moved down an index on dataScript and move position to show 
         for (int i = 0; i < line.Count; i++)
         {
             // if the element i has a customer, move it up
@@ -136,14 +165,47 @@ public class Restaurant_Manager : MonoBehaviour
                 // Retrieve data script
                 AIBehavior customerData = line[i].GetComponent<AIBehavior>();
 
+
                 // Move customer index down one
                 customerData.waitPosition -= 1;
 
                 // Update MoveToPosition reference to updated position
-                customerData.positionToMoveTo = new Vector3(linePositions[customerData.waitPosition].transform.position.x, line[i].transform.position.y, linePositions[customerData.waitPosition].transform.position.z);
+                Debug.Log($"New position to be acquired | Index i = {i}");
+                Debug.Log($"New position to be acquired | Index i = {customerData.waitPosition}");
+                if (customerData.waitPosition == -1)
+                {
+                    // Customer is first - this customer is removed
+                    //Add to wait list
+                    waiting.Add(line[i]);
+                    //Order
+                    //Get new position
+                    customerData.positionToMoveTo = waitingPositions[0].transform.position;
+                    //Move to new position
+
+                    //Remove customer from line list
+                    //line.Remove(line[i]);
+                }
+                else
+                {
+                    // Customer is not first 
+                    customerData.positionToMoveTo = new Vector3(linePositions[customerData.waitPosition].transform.position.x, line[i].transform.position.y, linePositions[customerData.waitPosition].transform.position.z);
+
+                }
+                Debug.Log($"New position acquired | Index i = {i}");
+
+                
                 // Move customer to their new position
                 customerData.MoveNextPosition();
+
+                
+                
+                
+
+                Debug.Log(i);
             }
+            
         }
+        //Remove first customer 
+        line.Remove(line[0]);
     }
 }

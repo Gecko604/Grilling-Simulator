@@ -7,7 +7,7 @@ public class AIBehavior : MonoBehaviour
     [SerializeField] private Restaurant_Manager director = null;
 
     public enum CustomerState {
-        Arriving,
+        Moving,
         Waiting,
         Eating,
         Leaving,
@@ -20,7 +20,7 @@ public class AIBehavior : MonoBehaviour
         Leaving,
     }
 
-    [SerializeField] public CustomerState currentTask;
+    [SerializeField] public CustomerState currentTask = CustomerState.Moving;
     [SerializeField] private float patience = 0;
     [SerializeField] public int waitPosition = -1;
     [SerializeField] public int standPosition = -1;
@@ -54,6 +54,8 @@ public class AIBehavior : MonoBehaviour
 
     IEnumerator LerpPosition(Vector3 targetPosition, float duration)
     {
+        currentTask = CustomerState.Moving;
+
         float time = 0;
         Vector3 startPosition = transform.position;
         while(time < duration)
@@ -65,19 +67,26 @@ public class AIBehavior : MonoBehaviour
 
         // Final snap into position
         transform.position = targetPosition;
-
+        // Signal customer is now waiting
+        currentTask = CustomerState.Waiting;
+        // Tell manager to check line - only runs on last customer ready
+        checkLine();
         // only first person calls 
         if (waitPosition == 0)
         {
             // Evaluate my position
-            director.EvaluateMyPosititon(gameObject);
+            //director.EvaluateMyPosititon(gameObject);
         }
     }
 
+    private void checkLine()
+    {
+        director.EvaluateLine();
+    }
     public void MoveNextPosition()
     {
         StartCoroutine(LerpPosition(positionToMoveTo, 5));
-        Debug.Log("MoveNextPosition() called!");
+       // Debug.Log("MoveNextPosition() called!");
     }
 
     public void ChangeTargetPosition(Vector3 targetPos)

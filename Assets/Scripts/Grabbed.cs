@@ -12,12 +12,6 @@ public class Grabbed : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inHand = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        inHand = true;
     }
 }

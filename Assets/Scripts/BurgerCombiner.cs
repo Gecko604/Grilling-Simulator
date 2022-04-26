@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -42,7 +43,6 @@ public class BurgerCombiner : MonoBehaviour
         }
         centerlocation = this.transform.position;
 
-
         //check to see completion of burger
         if (numIngredients > 5 || (burgerManager.hasTopBun && burgerManager.hasBottomBun)) 
         {
@@ -58,7 +58,6 @@ public class BurgerCombiner : MonoBehaviour
             this.GetComponent<Collider>().enabled = true;
             this.GetComponent<MeshRenderer>().enabled = true;
         }
-        
     }
 
     void OnTriggerEnter(Collider other)
@@ -66,13 +65,11 @@ public class BurgerCombiner : MonoBehaviour
         //check tag or name of object for type of ingredient
         GameObject ingredient = other.gameObject;
         //get object name
-        String name = ingredient.name;//I think works?
-        //grab ingredient script
-
+        String name = ingredient.name;
+        
         if (timer >= 2.0f)
         {
             timer = 0.0f;
-
             if (ingredient.CompareTag("Burger"))
             {
                 //talk to manager script to add gameobject to list for score measuring
@@ -190,5 +187,16 @@ public class BurgerCombiner : MonoBehaviour
         other.transform.rotation = parent.rotation;
         other.transform.SetParent(parent);
     }
+
+
+    public void AddToEndOfList(GameObject ingredient)
+    {
+        ingredientList.AddLast(ingredient);
+    }
+    public void RemoveFromEndOfList()
+    {
+        ingredientList.RemoveLast();
+    }
+
 }
 

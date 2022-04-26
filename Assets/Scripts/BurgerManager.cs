@@ -18,38 +18,36 @@ public class BurgerManager : MonoBehaviour
     public Boolean hasBottomBun;
     public int numberOfIngredients;
 
-    public LinkedList<GameObject> ingredientList = new LinkedList<GameObject>();
-    public LinkedList<string> ingredientNameList = new LinkedList<string>();
+    public List<GameObject> ingredientList = new List<GameObject>();
+    public List<string> ingredientNameList = new List<string>();
     public int listLength;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        listLength = ingredientNameList.Count;
     }
 
     //adds gameobject to end of linked list
     public void AddToEndOfList(GameObject ingredient)
     {
-        ingredientList.AddLast(ingredient);
+        int listlength = ingredientList.Count;
+        if (listLength >= 1)
+        {//grab previous ingredient and siable interactable
+            GameObject previousObject = ingredientList[listLength - 1];
+            
+        }
+        //add ingredient to end of list
+        ingredientList.Add(ingredient);
+
     }
 
-    //adds gameObject name to end of list
-    public void AddNameToEndOfList(String name)
-    {
-        ingredientNameList.AddLast(name);
-    }
 
     public void RemoveFromEndOfList()
     {
-        ingredientList.RemoveLast();
+        int listlength = ingredientList.Count;
+        ingredientList.RemoveAt(listlength - 1);
+        //if object below/before it in list, add interactable back to script
     }
 
 }

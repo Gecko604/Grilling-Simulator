@@ -10,11 +10,13 @@ public class SafetyTracker : MonoBehaviour
 
     [Header("Penalty Tracking")]
     public ScoreManager trackPenalty;
+    public GrillSoundController sounds;
     
     // Start is called before the first frame update
     void Start()
     {
         trackPenalty = FindObjectOfType<ScoreManager>();
+        sounds = FindObjectOfType<GrillSoundController>();
     }
 
     // Update is called once per frame
@@ -28,7 +30,7 @@ public class SafetyTracker : MonoBehaviour
         if (other.transform.tag == "Hand")
         {
             OnGrill = true;
-            StartCoroutine(ViolateSafety());
+            StartCoroutine(ViolateSafety(other));
         }
     }
 
@@ -38,10 +40,11 @@ public class SafetyTracker : MonoBehaviour
     }
 
 
-    public IEnumerator ViolateSafety()
+    public IEnumerator ViolateSafety(Collider collider)
     {
         while(OnGrill)
         {
+            sounds.TouchGrill(collider);
             trackPenalty.ApplyPenalty();
             yield return new WaitForSeconds(1);
         }

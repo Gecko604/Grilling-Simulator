@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnGrill: 0
   trackPenalty: {fileID: 0}
+  sounds: {fileID: 0}
 --- !u!114 &2361802202897440996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,8 +124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03eadbd17ee16cf4596a4c124571cfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchGrill: {fileID: 8300000, guid: a2623788a4605da4aaa2711a88445b9d, type: 3}
+  touchGrill: {fileID: 8300000, guid: 8f794d0f0792a5e449d9a2200799837a, type: 3}
+  cashSound: {fileID: 8300000, guid: 64fa1e52f93e46d4094bdbd0d25dd818, type: 3}
   soundPlayer: {fileID: 1538523757345555892, guid: 15d2f8f937e661c4e8728f951ab26eb4, type: 3}
+  destroy: {fileID: 0}
 --- !u!1 &2538540795895162320
 GameObject:
   m_ObjectHideFlags: 0

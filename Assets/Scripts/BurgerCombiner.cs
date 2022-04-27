@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 
 public class BurgerCombiner : MonoBehaviour
@@ -9,19 +10,21 @@ public class BurgerCombiner : MonoBehaviour
     // remove from list as objects are removed, keep only top object interactable and removable
 
     public Transform parent;
-    //public GameObject parentGameObject;
     public Material clear;
     public Material clearGreen;
     public Material highLightMaterial;
     [CanBeNull] public BurgerManager burgerManager;
     private Ingredient ingredient;
-
     public int numIngredients;
+
+    //Location Data
     public float ingredientoffset;
     private Vector3 centerlocation;
 
     //public GameObject secondfromTopObject;
     public float timer;
+
+    public List<GameObject> ingredientList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -73,11 +76,9 @@ public class BurgerCombiner : MonoBehaviour
             if (ingredient.CompareTag("Burger"))
             {
                 //talk to manager script to add gameobject to list for score measuring
-                burgerManager.AddToEndOfList(ingredient);
-                burgerManager.AddNameToEndOfList(name);
+                AddToManagerLists(ingredient, name);
                 burgerManager.hasPatty = true;
                 burgerManager.numberOfPatties++;
-                burgerManager.numberOfIngredients++;
                 numIngredients++;
 
                 //sets position and parent
@@ -91,11 +92,10 @@ public class BurgerCombiner : MonoBehaviour
             if (ingredient.CompareTag("Lettuce"))
             {
                 //talk to manager script to add gameobject to list for score measuring
-                burgerManager.AddToEndOfList(ingredient);
-                burgerManager.AddNameToEndOfList(name);
+                AddToManagerLists(ingredient, name);
                 burgerManager.hasLettuce = true;
                 burgerManager.numberOfLettucePieces++;
-                burgerManager.numberOfIngredients++;
+                
                 numIngredients++;
 
                 //sets position and parent
@@ -109,11 +109,9 @@ public class BurgerCombiner : MonoBehaviour
             if (ingredient.CompareTag("Cheese"))
             {
                 //talk to manager script to add gameobject to list for score measuring
-                burgerManager.AddToEndOfList(ingredient);
-                burgerManager.AddNameToEndOfList(name);
+                AddToManagerLists(ingredient, name);
                 burgerManager.hasCheese = true;
                 burgerManager.numberOfCheeseSlices++;
-                burgerManager.numberOfIngredients++;
                 numIngredients++;
 
                 //sets position and parent
@@ -128,10 +126,9 @@ public class BurgerCombiner : MonoBehaviour
             if (ingredient.CompareTag("TopBun"))
             {
                 //talk to manager script to add gameobject to list for score measuring
-                burgerManager.AddToEndOfList(ingredient);
-                burgerManager.AddNameToEndOfList(name);
+                AddToManagerLists(ingredient, name);
                 burgerManager.hasTopBun = true;
-                burgerManager.numberOfIngredients++;
+                
                 numIngredients++;
 
                 //sets position and parent
@@ -145,10 +142,8 @@ public class BurgerCombiner : MonoBehaviour
             if (ingredient.CompareTag("BottomBun"))
             {
                 //talk to manager script to add gameobject to list for score measuring
-                burgerManager.AddToEndOfList(ingredient);
-                burgerManager.AddNameToEndOfList(name);
+                AddToManagerLists(ingredient, name);
                 burgerManager.hasBottomBun = true;
-                burgerManager.numberOfIngredients++;
                 numIngredients++;
 
                 //sets position and parent
@@ -179,6 +174,9 @@ public class BurgerCombiner : MonoBehaviour
 
     //have some system if the top ingredient is grabbed move zone down and remove that ingredient from the list
 
+
+
+
     //sets parent, makes object kinematic, and moves to center of trigger zone
     void SetPositionAndParent(GameObject other)
     {
@@ -189,14 +187,42 @@ public class BurgerCombiner : MonoBehaviour
     }
 
 
+    /*//adds gameobject reference to end of linked list
     public void AddToEndOfList(GameObject ingredient)
     {
-        ingredientList.AddLast(ingredient);
-    }
-    public void RemoveFromEndOfList()
-    {
-        ingredientList.RemoveLast();
+        int listlength = ingredientList.Count;
+        if (listlength >= 1)
+        {//grab previous ingredient and disable interactable
+            GameObject previousObject = ingredientList[listlength - 1];
+            previousObject.GetComponent<Interactable>().enabled = false;
+        }
+        //add ingredient to end of list
+        ingredientList.Add(ingredient);
+
     }
 
+    //removes object reference from list
+    public void RemoveFromEndOfList()
+    {
+        int listlength = ingredientList.Count;
+        if (listlength >= 2)
+        {
+            GameObject previousObject = ingredientList[listlength - 2];
+            previousObject.GetComponent<Interactable>().enabled = true;
+            ingredientList.RemoveAt(listlength - 1);
+        }
+        if (listlength == 1)
+        {
+            ingredientList.RemoveAt(0);
+        }
+        
+    }*/
+
+
+    void AddToManagerLists(GameObject ingredient, String name)
+    {
+        burgerManager.AddToEndOfList(ingredient);
+        burgerManager.AddNameToEndOfList(name);
+    }
 }
 

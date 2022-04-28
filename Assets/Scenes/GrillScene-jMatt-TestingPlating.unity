@@ -5308,7 +5308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8430168519289121727, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_TagString
-      value: Burger
+      value: BurgerIngredient
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3295329129025130741, guid: 7ae18a0314c684045ad499021895973f, type: 3}
@@ -5494,7 +5494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8430168519289121727, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_TagString
-      value: Burger
+      value: BurgerIngredient
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3295329129025130741, guid: 7ae18a0314c684045ad499021895973f, type: 3}
@@ -5782,7 +5782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8430168519289121727, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_TagString
-      value: Burger
+      value: BurgerIngredient
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3295329129025130741, guid: 7ae18a0314c684045ad499021895973f, type: 3}

@@ -90,35 +90,7 @@ public class BurgerCombiner : MonoBehaviour
         if (timer >= 2.0f && !ingredientInList)
         {
             timer = 0.0f;
-            if (ingredient.CompareTag("Burger"))
-            {
-                //talk to manager script to add gameobject to list for score measuring
-                AddToManagerLists(ingredient, name);
-                numIngredients++;
-
-                //sets position and parent
-                SetPositionAndParent(ingredient);
-
-                //move zone up
-                MoveZoneUp();
-                ingredientoffset = 0.02f;
-            }
-
-            if (ingredient.CompareTag("Lettuce"))
-            {
-                //talk to manager script to add gameobject to list for score measuring
-                AddToManagerLists(ingredient, name);
-                numIngredients++;
-
-                //sets position and parent
-                SetPositionAndParent(ingredient);
-
-                //move zone up
-                MoveZoneUp();
-                ingredientoffset = 0.02f;
-            }
-
-            if (ingredient.CompareTag("Cheese"))
+            if (ingredient.CompareTag("BurgerIngredient"))
             {
                 //talk to manager script to add gameobject to list for score measuring
                 AddToManagerLists(ingredient, name);
@@ -164,6 +136,7 @@ public class BurgerCombiner : MonoBehaviour
 
         }
     }
+    
     public void MoveZoneUp()
     {
         Debug.Log("Moved Zones Down");

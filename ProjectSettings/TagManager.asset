@@ -15,6 +15,7 @@ TagManager:
   - Lettuce
   - projectile
   - FxTemporaire
+  - BurgerIngredient
   layers:
   - Default
   - TransparentFX

@@ -29,10 +29,10 @@ RectTransform:
   m_GameObject: {fileID: 6018057128764958686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 1}
   m_Children:
-  - {fileID: 6735654439180738606}
   - {fileID: 4682753863954333217}
+  - {fileID: 6735654439180738606}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,7 +50,7 @@ Canvas:
   m_GameObject: {fileID: 6018057128764958686}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &6018057128764958687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,19 +114,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd56f5a0aceb0424fa5a37de83c58cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  scoreGrade: {fileID: 0}
-  maxLevelScore: 0
-  numOrders: 0
-  happyCustomers: 0
-  satisfiedCustomers: 0
-  annoyedCustomers: 0
-  angryCustomers: 0
+  scoreText: {fileID: 5047223234575457500}
+  scoreGrade: {fileID: 9087174431113992386}
   playerScore: 1
-  customerRating: 0
   textPrefab: {fileID: 8766780083961801238, guid: fa78d251a247ba44e83974e391b968eb, type: 3}
   refundRed: {r: 0.58431375, g: 0.08224297, b: 0, a: 1}
   valueMealGreen: {r: 0, g: 0.58431375, b: 0.003921569, a: 1}
+  penalty: -5
+  difficulty: 2
+  director: {fileID: 0}
 --- !u!1 &7826206388050054317
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +153,7 @@ RectTransform:
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 6018057128764958690}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -226,7 +222,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -255,7 +251,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 25.717812, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -291,7 +287,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6018057128764958690}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -4908,6 +4908,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate
       objectReference: {fileID: 0}
+    - target: {fileID: 7605781810561339710, guid: 440d0d75ca7d6a44eb24135a93156884, type: 3}
+      propertyPath: m_TagString
+      value: plate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 440d0d75ca7d6a44eb24135a93156884, type: 3}
 --- !u!1 &898816154

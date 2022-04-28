@@ -36,7 +36,7 @@ public class Restaurant_Manager : MonoBehaviour
         orderManager = GameObject.Find("Order Holder").GetComponent<orderManager>();
 
         // Call coroutine immediately - spawn a full line
-        StartCoroutine(NewCustomer());
+        StartCoroutine(attemptNewCustomer());
 
         StartCoroutine(autoLineCheck());
 
@@ -47,18 +47,16 @@ public class Restaurant_Manager : MonoBehaviour
        
     }
 
-    IEnumerator NewCustomer()
+    IEnumerator attemptNewCustomer()
     {
         float delay = 3;
         //Debug.Log($"Spawning a new customer in ({delay}) seconds!");
         // How long to wait before code below is called
         yield return new WaitForSeconds(delay);
-        spawnCustomer();
-        if (line.Count < 6)
-        {
-            StartCoroutine(NewCustomer());
-        }
 
+        if (line.Count < 6) { spawnCustomer(); }
+
+        StartCoroutine(attemptNewCustomer());
     }
 
     // Return True if all customers in line are waiting
@@ -263,6 +261,41 @@ public class Restaurant_Manager : MonoBehaviour
         return false;
     }
 
+    private bool assignSeating(GameObject orderedCustomer)
+    {
+        // while less than 8, just add to list ==> takes available spot
+        if (seats.Count < 8) { seats.Add(orderedCustomer); return true; }
+
+        // otherwise swap with null spot
+        for (int i = 0; i < seats.Count; i++)
+        {
+            if (seats[i] == null)
+            {
+                seats[i] = orderedCustomer;
+                return true;
+            }
+
+        }
+
+        // return false if unsuccessful ==> should never happen
+        Debug.Log("Oops 1! This should never run.");
+        return false;
+    }
+    private bool isSeatingOpen()
+    {
+        if (seats.Count < 8) { return true; }
+
+        for (int i = 0; i < seats.Count; i++)
+        {
+            if (seats[i] == null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void customerGivenOrder(GameObject customerGivenFood)
     {
         // Take index of completed customer in standing queue
@@ -270,7 +303,44 @@ public class Restaurant_Manager : MonoBehaviour
         // Remove reference in waiting, turn into null so it may be swapped
         waiting[positionOpened] = null;
         // Destroy customer - for now
-        Destroy(customerGivenFood);
+
+        //Destroy(customerGivenFood);
+        if (isSeatingOpen())
+        // Move to a seat
+        {
+            AIBehavior customerData = customerGivenFood.GetComponent<AIBehavior>();
+
+            assignSeating(customerGivenFood);
+            // Get index of customer in line
+            customerData.seatPosition = seats.IndexOf(customerGivenFood);
+            //Get customer's line positions's Vector3
+            Vector3 targetPosition = new Vector3(seatingPositions[customerData.seatPosition].transform.position.x, customerGivenFood.transform.position.y, seatingPositions[customerData.seatPosition].transform.position.z);
+            // Give customer target position of thier spot in line
+            customerData.positionToMoveTo = targetPosition;
+            customerData.MoveNextPosition();
+
+            StartCoroutine(customerEating(customerGivenFood));
+        } else
+        // Move directly to exit
+        {
+            // Get script 
+            AIBehavior customerData = customerGivenFood.GetComponent<AIBehavior>();
+
+            //Get position of exit
+            Vector3 targetPosition = new Vector3(ExitPath[0].transform.position.x, customerGivenFood.transform.position.y, ExitPath[0].transform.position.z);
+
+            // Give customer target position of thier spot in line
+            customerData.positionToMoveTo = targetPosition;
+            customerData.MoveNextPosition();
+
+            StartCoroutine(destroyCustomer(customerGivenFood));
+        }
+
+        
+
+
+
+
         // Tell line to evaluate line and see if one can go in waiting
         EvaluateLine();
     }
@@ -283,6 +353,35 @@ public class Restaurant_Manager : MonoBehaviour
         StartCoroutine(autoLineCheck());
 
     }
+
+    IEnumerator destroyCustomer(GameObject exitingCustomer)
+    {
+        yield return new WaitForSeconds(5);
+        // Despawn customer after it leaves 
+        Destroy(exitingCustomer);
+    }
+
+    // Customer goes to sit, then calls exit lerp
+    IEnumerator customerEating(GameObject exitingCustomer)
+    {
+        yield return new WaitForSeconds(14);
+
+        // Get script 
+        AIBehavior customerData = exitingCustomer.GetComponent<AIBehavior>();
+
+        //Get position of exit
+        Vector3 targetPosition = new Vector3(ExitPath[0].transform.position.x, exitingCustomer.transform.position.y, ExitPath[0].transform.position.z);
+
+        // Give customer target position of thier spot in line
+        customerData.positionToMoveTo = targetPosition;
+        // Move customer to exit over 4 seconds
+        customerData.MoveNextPosition();
+        // Destroy customer after 5 seconds -> 1 sec after leaving building 
+        StartCoroutine(destroyCustomer(exitingCustomer));
+    }
+
+    // Customer goes to sit, then calls exit lerp
+    
 
     //DEBUG COROUTINE ONLY
     IEnumerator testCompleteOrder(GameObject customerGivenOrder)

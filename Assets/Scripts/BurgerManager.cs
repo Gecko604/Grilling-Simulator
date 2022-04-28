@@ -1,17 +1,14 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
 
 public class BurgerManager : MonoBehaviour
 {
+    [CanBeNull]public BurgerCombiner burgerCombiner;
+
     [Header("Ingredients of Burger")]
-    public Boolean hasLettuce;
-    public int numberOfLettucePieces;
-    public Boolean hasCheese;
-    public int numberOfCheeseSlices;
-    public Boolean hasPatty;
-    public int numberOfPatties;
     public Boolean hasTopBun;
     public Boolean hasBottomBun;
 
@@ -38,15 +35,15 @@ public class BurgerManager : MonoBehaviour
         }
         //add ingredient to end of list
         ingredientList.Add(ingredient);
-
-    }
+    } 
 
     //removes object reference from list
     public void RemoveFromEndOfList()
     {
         listlength = ingredientList.Count;
+
         if (listlength >= 2)
-        {
+        {//if object below/before it in list, add interactable back to script
             GameObject previousObject = ingredientList[listlength - 2];
             previousObject.GetComponent<Interactable>().enabled = true;
             previousObject.GetComponent<Throwable>().enabled = true;
@@ -56,7 +53,8 @@ public class BurgerManager : MonoBehaviour
         {
             ingredientList.RemoveAt(0);
         }
-        //if object below/before it in list, add interactable back to script
+        //move zone down
+        burgerCombiner.MoveZoneDown();
     }
 
     //adds name of object to list

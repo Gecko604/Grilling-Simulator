@@ -1,28 +1,30 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
 
 
 public class BurgerCombiner : MonoBehaviour
 {
-    // remove from list as objects are removed, keep only top object interactable and removable
-
     public Transform parent;
     public Material clear;
     public Material clearGreen;
     public Material highLightMaterial;
     [CanBeNull] public BurgerManager burgerManager;
-    private Ingredient ingredient;
     public int numIngredients;
 
     //Location Data
     public float ingredientoffset;
     private Vector3 centerlocation;
+    private Vector3 startingLocation;
+    private float placeInList;
 
     //public GameObject secondfromTopObject;
     public float timer;
+    private Boolean ingredientInList;
 
     public List<GameObject> ingredientList = new List<GameObject>();
 
@@ -30,9 +32,12 @@ public class BurgerCombiner : MonoBehaviour
     void Start()
     {
         Debug.Log("Startup of BurgerCombiner");
+
         ingredientoffset = 0.01f;
         centerlocation = this.transform.position;
+        startingLocation = this.transform.position;
         numIngredients = 0;
+        placeInList = 0;
         //secondfromTopObject = null;
         timer = 0.0f;
     }
@@ -43,6 +48,7 @@ public class BurgerCombiner : MonoBehaviour
         if (timer <= 2.0f)
         {
             timer += timer + Time.deltaTime;
+            ingredientList = burgerManager.ingredientList;
         }
         centerlocation = this.transform.position;
 
@@ -70,15 +76,16 @@ public class BurgerCombiner : MonoBehaviour
         //get object name
         String name = ingredient.name;
         
-        if (timer >= 2.0f)
+        //check if ingredient interacting is already in list of gameobjects
+        ingredientInList = ingredientList.Contains(ingredient);
+        //only add item to list if timer is good so no double input and if not already in list of objects
+        if (timer >= 2.0f && !ingredientInList)
         {
             timer = 0.0f;
             if (ingredient.CompareTag("Burger"))
             {
                 //talk to manager script to add gameobject to list for score measuring
                 AddToManagerLists(ingredient, name);
-                burgerManager.hasPatty = true;
-                burgerManager.numberOfPatties++;
                 numIngredients++;
 
                 //sets position and parent
@@ -93,9 +100,6 @@ public class BurgerCombiner : MonoBehaviour
             {
                 //talk to manager script to add gameobject to list for score measuring
                 AddToManagerLists(ingredient, name);
-                burgerManager.hasLettuce = true;
-                burgerManager.numberOfLettucePieces++;
-                
                 numIngredients++;
 
                 //sets position and parent
@@ -110,8 +114,6 @@ public class BurgerCombiner : MonoBehaviour
             {
                 //talk to manager script to add gameobject to list for score measuring
                 AddToManagerLists(ingredient, name);
-                burgerManager.hasCheese = true;
-                burgerManager.numberOfCheeseSlices++;
                 numIngredients++;
 
                 //sets position and parent
@@ -153,71 +155,31 @@ public class BurgerCombiner : MonoBehaviour
                 MoveZoneUp();
                 ingredientoffset = 0.02f;
             }
+
         }
     }
-
-    void MoveZoneUp()
+    public void MoveZoneUp()
     {
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + ingredientoffset, this.transform.position.z);
     }
 
-    void MoveZoneDown()
+    public void MoveZoneDown()
     {
+        //check if zone would go into/below the surface of plate
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - ingredientoffset, this.transform.position.z);
     }
-
-    //sets this position to position of zone
-    void moveToCenter(GameObject other)
-    {
-        other.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-    }
-
-    //have some system if the top ingredient is grabbed move zone down and remove that ingredient from the list
-
-
-
 
     //sets parent, makes object kinematic, and moves to center of trigger zone
     void SetPositionAndParent(GameObject other)
     {
+        centerlocation = new Vector3(this.transform.position.x, startingLocation.y + placeInList,
+            this.transform.position.z);
+        placeInList += 0.1f;
         other.transform.position = centerlocation;
         other.GetComponent<Rigidbody>().isKinematic = true;
         other.transform.rotation = parent.rotation;
         other.transform.SetParent(parent);
     }
-
-
-    /*//adds gameobject reference to end of linked list
-    public void AddToEndOfList(GameObject ingredient)
-    {
-        int listlength = ingredientList.Count;
-        if (listlength >= 1)
-        {//grab previous ingredient and disable interactable
-            GameObject previousObject = ingredientList[listlength - 1];
-            previousObject.GetComponent<Interactable>().enabled = false;
-        }
-        //add ingredient to end of list
-        ingredientList.Add(ingredient);
-
-    }
-
-    //removes object reference from list
-    public void RemoveFromEndOfList()
-    {
-        int listlength = ingredientList.Count;
-        if (listlength >= 2)
-        {
-            GameObject previousObject = ingredientList[listlength - 2];
-            previousObject.GetComponent<Interactable>().enabled = true;
-            ingredientList.RemoveAt(listlength - 1);
-        }
-        if (listlength == 1)
-        {
-            ingredientList.RemoveAt(0);
-        }
-        
-    }*/
-
 
     void AddToManagerLists(GameObject ingredient, String name)
     {

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5441184921794017240}
   - component: {fileID: 5441184921794017243}
   - component: {fileID: 5441184921794017242}
-  - component: {fileID: 5441184921794017221}
   - component: {fileID: -2107894120497650648}
   m_Layer: 0
   m_Name: Cheese
@@ -258,24 +257,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactable: {fileID: 0}
---- !u!114 &5441184921794017221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5441184921794017245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab3315c8c784a44dbff52b918e5a4fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  name: Cheese
-  burgerParent: {fileID: 0}
-  ingredients: {fileID: 0}
-  snapped: 0
-  inHand: 0
 --- !u!114 &-2107894120497650648
 MonoBehaviour:
   m_ObjectHideFlags: 0

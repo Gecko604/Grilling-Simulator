@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6506879774990221682}
   - component: {fileID: 6506879774990221681}
   - component: {fileID: 6506879774990221680}
-  - component: {fileID: 6506879774990221687}
   - component: {fileID: -6576019667163649656}
   m_Layer: 0
   m_Name: TopBun
@@ -258,24 +257,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactable: {fileID: 0}
---- !u!114 &6506879774990221687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506879774990221695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab3315c8c784a44dbff52b918e5a4fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  name: TopBun
-  burgerParent: {fileID: 0}
-  ingredients: {fileID: 0}
-  snapped: 0
-  inHand: 0
 --- !u!114 &-6576019667163649656
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,6 +16,9 @@ TagManager:
   - TopBun
   - Cheese
   - Lettuce
+  - projectile
+  - FxTemporaire
+  - BurgerIngredient
   - TopBun
   - SnapZone
   - BottomBun

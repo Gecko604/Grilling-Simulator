@@ -15,10 +15,10 @@ GameObject:
   - component: {fileID: 4634596134488656848}
   - component: {fileID: 4634596134488656851}
   - component: {fileID: 4634596134488656850}
-  - component: {fileID: 4634596134488656853}
+  - component: {fileID: -6686525090734586567}
   m_Layer: 0
   m_Name: Lettuce
-  m_TagString: Lettuce
+  m_TagString: BurgerIngredient
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,7 +213,19 @@ MonoBehaviour:
   restoreOriginalParent: 0
   onPickUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -6686525090734586567}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onDetachFromHand:
     m_PersistentCalls:
       m_Calls:
@@ -229,11 +241,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -6686525090734586567}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHeldUpdate:
     m_PersistentCalls:
       m_Calls: []
   interactable: {fileID: 0}
---- !u!114 &4634596134488656853
+--- !u!114 &-6686525090734586567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,12 +266,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4634596134488656877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab3315c8c784a44dbff52b918e5a4fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 31149632f84eb4e4b8295b5d18e21bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
-  name: Lettuce
-  burgerParent: {fileID: 0}
-  ingredients: {fileID: 0}
-  snapped: 0
   inHand: 0

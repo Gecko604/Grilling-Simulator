@@ -33,7 +33,7 @@ public class OrderHandler : MonoBehaviour
         for (int i = 0; i < ingredients.Count; i++)
         {
 
-            Debug.Log($"Logging: Ingredient is : {ingredients[i]}");
+            //Debug.Log($"Logging: Ingredient is : {ingredients[i]}");
             textElements[i].GetComponent<TextMeshProUGUI>().text = ingredients[i];
             imageElements[i].GetComponent<RawImage>().material = retMaterial(ingredients[i]);
         }

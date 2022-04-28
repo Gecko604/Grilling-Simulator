@@ -18,10 +18,10 @@ public class orderManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("attemptSpawnOrder");
+        //StartCoroutine("attemptSpawnOrder");
     }
 
-    private void spawnOrder()
+    public void spawnOrder(GameObject customer)
     {
         // Iterate through current orders (max: 3), and check if there is an open spot (open == "")
         for (int i = 0; i < currentOrders.Length; i++)
@@ -37,6 +37,7 @@ public class orderManager : MonoBehaviour
                 CreateOrder orderScript = newOrder.GetComponent<CreateOrder>();
                 //Assign new order it's score manager
                 orderScript.scoreManager = scoreManager;
+                orderScript.orderOwner = customer;
 
                 //Tell it to generate an order based of the difficulty
                 orderScript.generateOrder(ticketCount);
@@ -66,10 +67,10 @@ public class orderManager : MonoBehaviour
         }
     }
 
-    IEnumerator attemptSpawnOrder()
-    {
-        yield return new WaitForSeconds(5);
-        spawnOrder();
-        StartCoroutine("attemptSpawnOrder");
-    }
+  //  IEnumerator attemptSpawnOrder()
+    //{
+      //  yield return new WaitForSeconds(5);
+        //spawnOrder();
+        //StartCoroutine("attemptSpawnOrder");
+    //}
 }

@@ -14,6 +14,17 @@ TagManager:
   - Cheese
   - SnapZone
   - TopBun
+  - Cheese
+  - Lettuce
+  - TopBun
+  - SnapZone
+  - BottomBun
+  - SeatPos
+  - WaitPos
+  - LinePos
+  - BossPos
+  - ExitPos
+  - customer
   layers:
   - Default
   - TransparentFX

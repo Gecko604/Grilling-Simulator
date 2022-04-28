@@ -59,7 +59,7 @@ public class CreateOrder : MonoBehaviour
         }
         if (difficulty == 2)
         {
-            pattyCookedStates.Add("uncooked");
+            pattyCookedStates.Add("raw");
             pattyCookedStates.Add("medium");
             pattyCookedStates.Add("well done");
             pattyCookedStates.Add("overcooked");

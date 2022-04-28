@@ -20,6 +20,7 @@ TagManager:
   - LinePos
   - BossPos
   - ExitPos
+  - customer
   layers:
   - Default
   - TransparentFX

@@ -11,19 +11,19 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI scoreGrade;
 
-    [Header("Level Information")]
-    public float maxLevelScore = 0;
-    public int numOrders = 0;
+    //[Header("Level Information")]
+    //public float maxLevelScore = 0;
+    //public int numOrders = 0;
 
-    [Header("Customer Stats")]
-    public int happyCustomers = 0;
-    public int satisfiedCustomers = 0;
-    public int annoyedCustomers = 0;
-    public int angryCustomers = 0;
+    //[Header("Customer Stats")]
+    //public int happyCustomers = 0;
+    //public int satisfiedCustomers = 0;
+    //public int annoyedCustomers = 0;
+   // public int angryCustomers = 0;
 
     [Header("Player Information")]
     public float playerScore = 0.0f;
-    public float customerRating = 0.0f;
+    //public float customerRating = 0.0f;
 
     [Header("Payment Information")]
     public GameObject textPrefab = null;
@@ -35,10 +35,13 @@ public class ScoreManager : MonoBehaviour
     public int penalty = -5;
 
     [Header("Game Difficulty")]
-    public int difficulty = 1;
+    public int difficulty = 2;
 
+    [SerializeField] private Restaurant_Manager director = null;
     public void Start()
     {
+        director = GameObject.Find("Resturant_Position_Manager").GetComponent<Restaurant_Manager>();
+
         UpdateScore();
     }
     public void MealCompleted(bool correctOrder)
@@ -105,35 +108,12 @@ public class ScoreManager : MonoBehaviour
         {
             scoreText.color = refundRed;
         }
+
+        if (playerScore < -10.00) { scoreText.text = "You Lose!"; scoreText.color = refundRed; director.gameOver = true; this.enabled = false; }
+        if (playerScore > 10000.00) { scoreText.text = "You Win!"; scoreText.color = valueMealGreen; director.gameOver = true; this.enabled = false; }
     }
 
-    //To be implemented when levels are created
-    public void GradeScore()
-    {
-        // F.U.N - Grade scaling 
-
-        // F stands for: Fine
-        // U stands for: unsatisfactory
-        // N stands for: not good enough
-
-        //Grade Letter is dependant on final score's % of the total avaliable points
-
-        if (playerScore / maxLevelScore >= 0.9)
-        {
-
-        } else if (playerScore / maxLevelScore >= 0.8)
-        {
-
-        } else
-        {
-            // Taunted by Mr. Krustacean
-
-
-        }
-
-
-
-    }
+    
 
     public void ApplyPenalty()
     {

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class AIBehavior : MonoBehaviour
 {
+    [SerializeField] private List<AudioClip> IdleSounds = new List<AudioClip>();
+    [SerializeField] public  AudioSource audioSource = null;
     [SerializeField] private Restaurant_Manager director = null;
 
     public enum CustomerState {
         Moving,
         Waiting,
-        Eating,
-        Leaving,
+        Standing
     }
 
     public enum BossState {
@@ -32,6 +33,10 @@ public class AIBehavior : MonoBehaviour
     public Vector3 positionToMoveTo;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
+        StartCoroutine(playSound());
+
         director = GameObject.Find("Resturant_Position_Manager").GetComponent<Restaurant_Manager>();
         //orderMenu = GameObject.Find("Order Holder").GetComponent<orderManager>();
 
@@ -97,5 +102,19 @@ public class AIBehavior : MonoBehaviour
         positionToMoveTo = targetPos;
     }
 
-    
+    IEnumerator playSound()
+    {
+        int randomTime = Random.Range(10, 45);
+
+
+
+        yield return new WaitForSeconds(randomTime);
+
+        int ran = Random.Range(0, IdleSounds.Count);
+
+        audioSource.clip = IdleSounds[ran];
+
+        audioSource.Play();
+
+    }
 }

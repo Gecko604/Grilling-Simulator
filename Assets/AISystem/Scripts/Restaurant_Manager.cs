@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Restaurant_Manager : MonoBehaviour
 {
+
+    [Header("Game Settings")]
+    [SerializeField] public bool gameOver = false;
+
     [Header("Position References")]
     // References to positions - don't modify
     [SerializeField] private List<GameObject> linePositions = new List<GameObject>(6);
@@ -42,23 +47,28 @@ public class Restaurant_Manager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-       
-    }
 
     IEnumerator attemptNewCustomer()
     {
-        float delay = 3;
-        //Debug.Log($"Spawning a new customer in ({delay}) seconds!");
-        // How long to wait before code below is called
-        yield return new WaitForSeconds(delay);
+        if (!gameOver)
+        {
+            float delay = 3;
+            //Debug.Log($"Spawning a new customer in ({delay}) seconds!");
+            // How long to wait before code below is called
+            yield return new WaitForSeconds(delay);
 
-        if (line.Count < 6) { spawnCustomer(); }
+            if (line.Count < 6) { spawnCustomer(); }
 
-        StartCoroutine(attemptNewCustomer());
+            StartCoroutine(attemptNewCustomer());
+
+        } else
+        {
+            StartCoroutine(customersCleanUp());
+        }
+        
     }
 
+    //
     // Return True if all customers in line are waiting
     private bool checkLineReady()
     {
@@ -69,6 +79,7 @@ public class Restaurant_Manager : MonoBehaviour
 
         return true;
     }
+
     private void spawnCustomer()
     {
 
@@ -366,6 +377,12 @@ public class Restaurant_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(14);
 
+        //Relinquish seat
+        int seatIndex = seats.IndexOf(exitingCustomer);
+
+        // Reset seat
+        seats[seatIndex] = null;
+
         // Get script 
         AIBehavior customerData = exitingCustomer.GetComponent<AIBehavior>();
 
@@ -376,6 +393,8 @@ public class Restaurant_Manager : MonoBehaviour
         customerData.positionToMoveTo = targetPosition;
         // Move customer to exit over 4 seconds
         customerData.MoveNextPosition();
+
+
         // Destroy customer after 5 seconds -> 1 sec after leaving building 
         StartCoroutine(destroyCustomer(exitingCustomer));
     }
@@ -396,6 +415,31 @@ public class Restaurant_Manager : MonoBehaviour
         Destroy(customerGivenOrder);
         // Tell line to evaluate line and see if one can go in waiting
         EvaluateLine();
+    }
 
+
+    //Clear out resturant - only call when game over
+    IEnumerator customersCleanUp()
+    {
+        Debug.Log("Cleanup called");
+        yield return new WaitForSeconds(6);
+
+        GameObject[] customers = GameObject.FindGameObjectsWithTag("customer");
+        
+        for (int i = 0; i < customers.Length; i++)
+        {
+            // Get script 
+            AIBehavior customerData = customers[i].GetComponent<AIBehavior>();
+
+            //Get position of exit
+            Vector3 targetPosition = new Vector3(ExitPath[0].transform.position.x, customers[i].transform.position.y, ExitPath[0].transform.position.z);
+
+            // Give customer target position of thier spot in line
+            customerData.positionToMoveTo = targetPosition;
+            // Move customer to exit over 4 seconds
+            customerData.MoveNextPosition();
+            // Destroy customer after 5 seconds -> 1 sec after leaving building 
+            StartCoroutine(destroyCustomer(customers[i]));
+        }
     }
 }

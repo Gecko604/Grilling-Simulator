@@ -6,7 +6,7 @@ public class IngredientSpawner : MonoBehaviour
 {
 
     public Vector3 startPos;
-    public GameObject ingredient;
+    public GameObject ingredient = null;
     public Quaternion startRot;
 
     private bool canSpawn = true;
@@ -14,6 +14,8 @@ public class IngredientSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (ingredient == null) { ingredient = gameObject; }
+
         startPos = gameObject.transform.position;
         startRot = gameObject.transform.rotation;
     }
@@ -32,6 +34,9 @@ public class IngredientSpawner : MonoBehaviour
             ingredientInstance.name = "Burger Patty";
             ingredientInstance.GetComponent<Rigidbody>().isKinematic = false;
             canSpawn = false;
+
+            gameObject.GetComponent<BoxCollider>().isTrigger = false;
+            gameObject.GetComponent<Rigidbody>().useGravity = true;
         }
     }
 }

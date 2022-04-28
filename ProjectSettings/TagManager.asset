@@ -5,17 +5,29 @@ TagManager:
   serializedVersion: 2
   tags:
   - Burger
-  - Grillable
   - Grill
-  - Plate
+  - Grillable
+  - Hand
+  - plate
+  - ticket
+  - Lettuce
+  - Cheese
   - SnapZone
   - TopBun
-  - BottomBun
   - Cheese
   - Lettuce
   - projectile
   - FxTemporaire
   - BurgerIngredient
+  - TopBun
+  - SnapZone
+  - BottomBun
+  - SeatPos
+  - WaitPos
+  - LinePos
+  - BossPos
+  - ExitPos
+  - customer
   layers:
   - Default
   - TransparentFX
@@ -23,8 +35,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - NoTrigger
+  - GrillTop
   - 
   - 
   - 

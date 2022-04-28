@@ -8,9 +8,7 @@ public class BurgerCooker : MonoBehaviour
     public GameObject topBurger;
     public GameObject bottomBurger;
 
-    //public BurgerStager UpperStager;
-    //public BurgerStager LowerStager;
-
+    private AudioSource sizzle;
 
     // Start is called before the first frame update
     void Start()
@@ -18,40 +16,38 @@ public class BurgerCooker : MonoBehaviour
         if (topBurger.GetComponent<BurgerStager>() == null) { Debug.Log("Missing UpperStager"); };
         if (bottomBurger.GetComponent<BurgerStager>() == null) { Debug.Log("Missing LowerStager"); };
 
-        Debug.Log("BurgerCooker.cs Start");
+        sizzle = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"OnTriggerEnter other: {other.gameObject}");
         if (other.transform.tag == "Grill")
         {
+            sizzle.Play();
             if (GetHalf())
             {
-                Debug.Log("Upper start grilling");
                 topBurger.GetComponent<BurgerStager>().StartGrilling();
-                Debug.Log("Upper started grilling");
             }
             else
             {
-                Debug.Log("Lower start grilling");
                 bottomBurger.GetComponent<BurgerStager>().StartGrilling();
-                Debug.Log("Lower started grilling");
+
             }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log($"OnTriggerExit other: {other.gameObject}");
         if (other.transform.tag == "Grill")
         {
+            sizzle.Stop();
             bottomBurger.GetComponent<BurgerStager>().StopGrilling();
             topBurger.GetComponent<BurgerStager>().StopGrilling();
         }
@@ -59,11 +55,7 @@ public class BurgerCooker : MonoBehaviour
 
     private bool GetHalf()
     {
-        float upAngle = Quaternion.Angle(Quaternion.Euler(-90, 0, 0), transform.rotation);
-        float downAngle = Quaternion.Angle(Quaternion.Euler(90, 0, 0), transform.rotation);
-        Debug.Log($"GetHalf() upAngle: {upAngle} downAngle: {downAngle}");
-
-        if(upAngle < downAngle)
+        if(topBurger.transform.position.y > bottomBurger.transform.position.y)
         {
             return true;
         } else

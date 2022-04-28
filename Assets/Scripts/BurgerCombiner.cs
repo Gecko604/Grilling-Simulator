@@ -14,19 +14,20 @@ public class BurgerCombiner : MonoBehaviour
     public Material clearGreen;
     public Material highLightMaterial;
     [CanBeNull] public BurgerManager burgerManager;
+    [CanBeNull] public IngredientRemoverBox removerBox;
     public int numIngredients;
 
     //Location Data
     public float ingredientoffset;
     private Vector3 centerlocation;
     private Vector3 startingLocation;
-    private float placeInList;
 
-    //public GameObject secondfromTopObject;
+    public GameObject secondfromTopObject;
+    public GameObject topObject;
     public float timer;
     private Boolean ingredientInList;
 
-    public List<GameObject> ingredientList = new List<GameObject>();
+    //public List<GameObject> ingredientList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -37,20 +38,27 @@ public class BurgerCombiner : MonoBehaviour
         centerlocation = this.transform.position;
         startingLocation = this.transform.position;
         numIngredients = 0;
-        placeInList = 0;
-        //secondfromTopObject = null;
         timer = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
         if (timer <= 2.0f)
         {
             timer += timer + Time.deltaTime;
-            ingredientList = burgerManager.ingredientList;
+            //ingredientList = burgerManager.ingredientList;
         }
         centerlocation = this.transform.position;
+
+        if (burgerManager.ingredientList.Count == 0)
+        {
+            removerBox.DisableColliderAndRenderer();
+            removerBox.ResetBoxLocation();
+            this.transform.position = startingLocation;
+        }
 
         //check to see completion of burger
         if (numIngredients > 5 || (burgerManager.hasTopBun && burgerManager.hasBottomBun)) 
@@ -77,7 +85,7 @@ public class BurgerCombiner : MonoBehaviour
         String name = ingredient.name;
         
         //check if ingredient interacting is already in list of gameobjects
-        ingredientInList = ingredientList.Contains(ingredient);
+        ingredientInList = burgerManager.ingredientList.Contains(ingredient);
         //only add item to list if timer is good so no double input and if not already in list of objects
         if (timer >= 2.0f && !ingredientInList)
         {
@@ -147,10 +155,8 @@ public class BurgerCombiner : MonoBehaviour
                 AddToManagerLists(ingredient, name);
                 burgerManager.hasBottomBun = true;
                 numIngredients++;
-
                 //sets position and parent
                 SetPositionAndParent(ingredient);
-
                 //move zone up
                 MoveZoneUp();
                 ingredientoffset = 0.02f;
@@ -160,21 +166,25 @@ public class BurgerCombiner : MonoBehaviour
     }
     public void MoveZoneUp()
     {
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + ingredientoffset, this.transform.position.z);
+        Debug.Log("Moved Zones Down");
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.02f, this.transform.position.z);
+        if (numIngredients != 1)
+        {
+            removerBox.MoveAndExitScaleZoneUp();
+        }
     }
 
     public void MoveZoneDown()
     {
+        Debug.Log("Moving adder Zone down");
         //check if zone would go into/below the surface of plate
+        //if now zero ingredients in list, reset to starting position and disable exit box
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - ingredientoffset, this.transform.position.z);
     }
 
     //sets parent, makes object kinematic, and moves to center of trigger zone
     void SetPositionAndParent(GameObject other)
     {
-        centerlocation = new Vector3(this.transform.position.x, startingLocation.y + placeInList,
-            this.transform.position.z);
-        placeInList += 0.1f;
         other.transform.position = centerlocation;
         other.GetComponent<Rigidbody>().isKinematic = true;
         other.transform.rotation = parent.rotation;

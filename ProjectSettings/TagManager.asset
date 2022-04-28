@@ -13,6 +13,8 @@ TagManager:
   - BottomBun
   - Cheese
   - Lettuce
+  - projectile
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX

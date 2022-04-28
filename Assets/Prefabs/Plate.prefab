@@ -223,10 +223,12 @@ MonoBehaviour:
   clearGreen: {fileID: 2100000, guid: c078ea320f074e9418e477da63cf7081, type: 2}
   highLightMaterial: {fileID: 2100000, guid: 5af24be8b3cf6684998bf1cbdb3ba451, type: 2}
   burgerManager: {fileID: 7605781810561339685}
+  removerBox: {fileID: 5039159563028493343}
   numIngredients: 0
   ingredientoffset: 0
+  secondfromTopObject: {fileID: 0}
+  topObject: {fileID: 0}
   timer: 0
-  ingredientList: []
 --- !u!1 &7605781810561339710
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c336a45c8861a7409f6aff98d46225e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burgerCombiner: {fileID: 0}
+  burgerCombiner: {fileID: 7605781809201733464}
+  removerBox: {fileID: 5039159563028493343}
   hasTopBun: 0
   hasBottomBun: 0
   ingredientList: []

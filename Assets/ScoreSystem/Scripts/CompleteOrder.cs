@@ -7,7 +7,11 @@ public class CompleteOrder : MonoBehaviour
     [SerializeField] 
     // Reference for updating score 
     private ScoreManager scoreManager;
-    
+
+    [SerializeField]
+    // Reference for updating line 
+    private Restaurant_Manager director;
+
     [SerializeField]
     // Retrieve list of active orders
     private orderManager orderManager;
@@ -26,6 +30,7 @@ public class CompleteOrder : MonoBehaviour
         //Get reference to HUD's score manager
         scoreManager = GameObject.Find("HUD").GetComponent<ScoreManager>();
         orderManager = GameObject.Find("Order Holder").GetComponent<orderManager>();
+        director = GameObject.Find("Resturant_Position_Manager").GetComponent<Restaurant_Manager>();
 
     }
 
@@ -47,11 +52,21 @@ public class CompleteOrder : MonoBehaviour
             //TODO: Give order the order ticket number
             orderManager.CompleteOrder(turnInTicket.GetComponentInParent<CreateOrder>().GetOrderNumber().ToString());
 
+
+            // Testing!!
+            //Call owner removal script when completed
+            CreateOrder orderScript = turnInTicket.transform.parent.GetComponent<CreateOrder>();
+
+
             //Destroy turned in order components => Reset variable references
             Destroy(turnInBurger);
             turnInBurger = null;
             Destroy(turnInTicket.transform.parent.gameObject);
             turnInTicket = null;
+
+            
+
+            director.customerGivenOrder(orderScript.orderOwner);
 
 
         }

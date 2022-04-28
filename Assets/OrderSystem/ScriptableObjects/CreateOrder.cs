@@ -17,6 +17,7 @@ public class CreateOrder : MonoBehaviour
 
     [SerializeField] private List<string> ingredients;
 
+    [SerializeField] public GameObject orderOwner = null;
     void Start()
     {
     }

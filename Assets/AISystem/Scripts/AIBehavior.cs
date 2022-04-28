@@ -25,6 +25,7 @@ public class AIBehavior : MonoBehaviour
     [SerializeField] public int waitPosition = -1;
     [SerializeField] public int standPosition = -1;
     [SerializeField] public int seatPosition = -1;
+    [SerializeField] public int timeToMove = 4;
 
     // Start is called before the first frame update
 
@@ -32,6 +33,7 @@ public class AIBehavior : MonoBehaviour
     void Start()
     {
         director = GameObject.Find("Resturant_Position_Manager").GetComponent<Restaurant_Manager>();
+        //orderMenu = GameObject.Find("Order Holder").GetComponent<orderManager>();
 
         // If director not found, escape 
         if (director == null) { return; }
@@ -69,7 +71,7 @@ public class AIBehavior : MonoBehaviour
         transform.position = targetPosition;
         // Signal customer is now waiting
         currentTask = CustomerState.Waiting;
-        // Tell manager to check line - only runs on last customer ready
+        // Tell manager to check line - fails, only runs successfully on last customer ready
         checkLine();
         // only first person calls 
         if (waitPosition == 0)
@@ -85,7 +87,7 @@ public class AIBehavior : MonoBehaviour
     }
     public void MoveNextPosition()
     {
-        StartCoroutine(LerpPosition(positionToMoveTo, 5));
+        StartCoroutine(LerpPosition(positionToMoveTo, timeToMove));
        // Debug.Log("MoveNextPosition() called!");
     }
 

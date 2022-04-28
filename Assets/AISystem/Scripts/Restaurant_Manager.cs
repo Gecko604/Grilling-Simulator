@@ -15,12 +15,14 @@ public class Restaurant_Manager : MonoBehaviour
     [Header("Customer Elements")]
     // Lists of positions containing customers - do modify
     [SerializeField] public List<GameObject> line = new List<GameObject>();
-    [SerializeField] public List<GameObject> waiting = new List<GameObject>();
+    [SerializeField] public List<GameObject> waiting = new List<GameObject>() {null, null, null};
     [SerializeField] public List<GameObject> seats = new List<GameObject>();
 
     [Header("Prefabs")]
     [SerializeField] private GameObject customerPrefab = null;
 
+    [Header("Order Manager")]
+    [SerializeField] private orderManager orderManager = null;
     // 6 line
     // 3 waiting
     // 8 sitting
@@ -31,10 +33,12 @@ public class Restaurant_Manager : MonoBehaviour
 
     private void Start()
     {
+        orderManager = GameObject.Find("Order Holder").GetComponent<orderManager>();
+
         // Call coroutine immediately - spawn a full line
         StartCoroutine(NewCustomer());
-        
 
+        StartCoroutine(autoLineCheck());
 
     }
 
@@ -144,7 +148,7 @@ public class Restaurant_Manager : MonoBehaviour
     public void EvaluateLine()
     {
         // If line is ready move everyone up one
-        if (checkLineReady() && waiting.Count != 3)
+        if (checkLineReady() && isStandingOpen())
         {
             moveLineUp();
         } else
@@ -155,57 +159,144 @@ public class Restaurant_Manager : MonoBehaviour
     }
     private void moveLineUp()
     {
-        Debug.Log(line.Count);
-        // After removing firstPos, index 1 -> N : must be moved down an index on dataScript and move position to show 
-        for (int i = 0; i < line.Count; i++)
+        // only move everyone up if waiting is open
+        if (isStandingOpen())
         {
-            // if the element i has a customer, move it up
-            if (line[i] != null)
+            // After removing firstPos, index 1 -> N : must be moved down an index on dataScript and move position to show 
+            for (int i = 0; i < line.Count; i++)
             {
-                // Retrieve data script
-                AIBehavior customerData = line[i].GetComponent<AIBehavior>();
-
-
-                // Move customer index down one
-                customerData.waitPosition -= 1;
-
-                // Update MoveToPosition reference to updated position
-                Debug.Log($"New position to be acquired | Index i = {i}");
-                Debug.Log($"New position to be acquired | Index i = {customerData.waitPosition}");
-                if (customerData.waitPosition == -1)
+                // if the element i has a customer, move it up
+                if (line[i] != null)
                 {
-                    // Customer is first - this customer is removed
-                    //Add to wait list
-                    waiting.Add(line[i]);
-                    //Order
-                    //Get new position
-                    customerData.positionToMoveTo = waitingPositions[0].transform.position;
-                    //Move to new position
+                    // Retrieve data script
+                    AIBehavior customerData = line[i].GetComponent<AIBehavior>();
 
-                    //Remove customer from line list
-                    //line.Remove(line[i]);
+
+                    // Move customer index down one
+                    customerData.waitPosition -= 1;
+
+                    // Update MoveToPosition reference to updated position
+                    //Debug.Log($"New position to be acquired | Index i = {i}");
+                    //Debug.Log($"New position to be acquired | Index i = {customerData.waitPosition}");
+                    if (customerData.waitPosition == -1)
+                    {
+                        //Add to wait list
+                        //waiting.Add(line[i]);
+                        assignStanding(line[i]);
+
+                        //Order - pass onto order the owner
+                        orderManager.spawnOrder(line[i]);
+
+                        //Get new position
+                        customerData.standPosition = waiting.IndexOf(line[i]);
+                        //Move to new position
+                        customerData.positionToMoveTo = waitingPositions[customerData.standPosition].transform.position;
+                        // Debug coroutine - given customer and 10 seconds to delete and re-evaluate line to take in spot
+                        // -- Remove to test manual order completion    
+                        //StartCoroutine(testCompleteOrder(line[i]));
+                        //Remove customer from line list
+                        //line.Remove(line[i]);
+                    }
+                    else
+                    {
+                        // Customer is not first 
+                        customerData.positionToMoveTo = new Vector3(linePositions[customerData.waitPosition].transform.position.x, line[i].transform.position.y, linePositions[customerData.waitPosition].transform.position.z);
+
+                    }
+                    //Debug.Log($"New position acquired | Index i = {i}");
+
+
+                    // Move customer to their new position
+                    customerData.MoveNextPosition();
+
+
+
+
+
+                    //Debug.Log(i);
                 }
-                else
-                {
-                    // Customer is not first 
-                    customerData.positionToMoveTo = new Vector3(linePositions[customerData.waitPosition].transform.position.x, line[i].transform.position.y, linePositions[customerData.waitPosition].transform.position.z);
 
-                }
-                Debug.Log($"New position acquired | Index i = {i}");
+            }
+            //Remove first customer
+            if (line.Count > 0)
+            {
+                line.Remove(line[0]);
+            }
 
-                
-                // Move customer to their new position
-                customerData.MoveNextPosition();
+        }
+        
+    }
 
-                
-                
-                
+    // Iterate Standing positions, if a single one is open then assign customer to that position
+    private bool assignStanding(GameObject orderedCustomer)
+    {
+        // while less than 3, just add to list ==> takes available spot
+        if (waiting.Count < 3) { waiting.Add(orderedCustomer);  return true; }
 
-                Debug.Log(i);
+        // otherwise swap with null spot
+        for (int i = 0; i < waiting.Count; i++)
+        {
+            if (waiting[i] == null)
+            {
+                waiting[i] = orderedCustomer;
+                return true;
             }
             
         }
-        //Remove first customer 
-        line.Remove(line[0]);
+
+        // return false if unsuccessful ==> should never happen
+        Debug.Log("Oops! This should never run.");
+        return false;
+    }
+    private bool isStandingOpen()
+    {
+        if (waiting.Count < 3) { return true; }
+
+        for (int i = 0; i < waiting.Count; i++)
+        {
+            if (waiting[i] == null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void customerGivenOrder(GameObject customerGivenFood)
+    {
+        // Take index of completed customer in standing queue
+        int positionOpened = waiting.IndexOf(customerGivenFood);
+        // Remove reference in waiting, turn into null so it may be swapped
+        waiting[positionOpened] = null;
+        // Destroy customer - for now
+        Destroy(customerGivenFood);
+        // Tell line to evaluate line and see if one can go in waiting
+        EvaluateLine();
+    }
+
+    IEnumerator autoLineCheck()
+    {
+        yield return new WaitForSeconds(15);
+        // Call evaluate line in case spawning has caused a mistime in evaluateLine() and people walking in.
+        EvaluateLine();
+        StartCoroutine(autoLineCheck());
+
+    }
+
+    //DEBUG COROUTINE ONLY
+    IEnumerator testCompleteOrder(GameObject customerGivenOrder)
+    {
+        Debug.Log("Order being made. Completed in 10 seconds.");
+        yield return new WaitForSeconds(10);
+        // Take index of completed customer in standing queue
+        int positionOpened = waiting.IndexOf(customerGivenOrder);
+        // Remove reference in waiting, turn into null so it may be swapped
+        waiting[positionOpened] = null;
+        // Destroy customer - for now
+        Destroy(customerGivenOrder);
+        // Tell line to evaluate line and see if one can go in waiting
+        EvaluateLine();
+
     }
 }

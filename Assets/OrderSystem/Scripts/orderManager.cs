@@ -21,7 +21,7 @@ public class orderManager : MonoBehaviour
         //StartCoroutine("attemptSpawnOrder");
     }
 
-    private void spawnOrder()
+    public void spawnOrder(GameObject customer)
     {
         // Iterate through current orders (max: 3), and check if there is an open spot (open == "")
         for (int i = 0; i < currentOrders.Length; i++)
@@ -37,6 +37,7 @@ public class orderManager : MonoBehaviour
                 CreateOrder orderScript = newOrder.GetComponent<CreateOrder>();
                 //Assign new order it's score manager
                 orderScript.scoreManager = scoreManager;
+                orderScript.orderOwner = customer;
 
                 //Tell it to generate an order based of the difficulty
                 orderScript.generateOrder(ticketCount);

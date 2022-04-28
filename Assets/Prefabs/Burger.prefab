@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6205213494293375737}
   - component: {fileID: 1102825749011771104}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Edge1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6817614413352128184}
   - component: {fileID: 5987516622466543577}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Edge3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5408786623267284091}
   - component: {fileID: 3861477506805594090}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Edge4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 472321990676962126}
   - component: {fileID: 3506927861668944360}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Edge2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,8 @@ GameObject:
   - component: {fileID: 1062076740727076903}
   - component: {fileID: 9100824389967025832}
   - component: {fileID: 4296512260418742564}
-  - component: {fileID: 8049321359440327916}
+  - component: {fileID: 7739873169227813977}
+  - component: {fileID: 3138810839583899258}
   m_Layer: 0
   m_Name: Burger
   m_TagString: Burger
@@ -336,7 +337,19 @@ MonoBehaviour:
   restoreOriginalParent: 0
   onPickUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7739873169227813977}
+        m_TargetAssemblyTypeName: IngredientSpawner, Assembly-CSharp
+        m_MethodName: SpawnIngredient
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDetachFromHand:
     m_PersistentCalls:
       m_Calls: []
@@ -371,7 +384,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topBurger: {fileID: 6930324626970221978}
   bottomBurger: {fileID: 6788667426040433761}
---- !u!82 &8049321359440327916
+--- !u!114 &7739873169227813977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430168519289121727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cec1a736e0cf04583b5e2f6a336fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
+  ingredient: {fileID: 8430168519289121727}
+  startRot: {x: 0, y: 0, z: 0, w: 0}
+--- !u!82 &3138810839583899258
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -392,7 +420,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -427,7 +455,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -524,7 +552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f3bb7ed450500774db6111c4cbc9cd6f, type: 3}
       propertyPath: m_TagString
-      value: Burger
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3bb7ed450500774db6111c4cbc9cd6f, type: 3}
@@ -626,7 +654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f3bb7ed450500774db6111c4cbc9cd6f, type: 3}
       propertyPath: m_TagString
-      value: Burger
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3bb7ed450500774db6111c4cbc9cd6f, type: 3}

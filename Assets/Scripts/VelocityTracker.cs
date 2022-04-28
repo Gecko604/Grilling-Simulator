@@ -5,11 +5,13 @@ using UnityEngine;
 public class VelocityTracker : MonoBehaviour
 {
 
+    [Header("Spatula Position")]
     public float x;
     public float z;
+
+    [Header("Trigger Variables")]
     public bool onSpatula = false;
     public GameObject burger;
-    public Vector3 rotationVector;
 
 
     private void FixedUpdate()

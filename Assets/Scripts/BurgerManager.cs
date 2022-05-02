@@ -6,81 +6,66 @@ using Valve.VR.InteractionSystem;
 
 public class BurgerManager : MonoBehaviour
 {
-    [CanBeNull]public BurgerCombiner burgerCombiner;
-    [CanBeNull] public IngredientRemoverBox removerBox;
+    [Header("Required Components")]
+    [SerializeField] private List<string> ingredientNames = new List<string>();
+    [SerializeField] private List<GameObject> ingredientPrefabs = new List<GameObject>();
+    [SerializeField] private BoxCollider ingredientHitbox = null;
+    [SerializeField] private Vector3 ingredientPlacePosition = new Vector3();
 
-    [Header("Ingredients of Burger")]
-    public Boolean hasTopBun;
-    public Boolean hasBottomBun;
-
-    public List<GameObject> ingredientList = new List<GameObject>();
-    public List<string> ingredientNameList = new List<string>();
-    public int listlength;
-
-    // Update is called once per frame
-    void Update()
+    [Header("Burger Ingredients")]
+    [SerializeField] private List<string> ingredientNameList = new List<string>();
+    [SerializeField] private List<GameObject> ingredientObjectList = new List<GameObject>();
+    private void OnTriggerEnter(Collider other)
     {
-    }
-
-    //adds gameobject reference to end of list
-    public void AddToEndOfList(GameObject ingredient)
-    {
-        listlength = ingredientList.Count;
-        if (listlength >= 1)
-        {   //grab previous ingredient and disable interactable
-            GameObject previousObject = ingredientList[listlength - 1];
-          
-            previousObject.GetComponent<Interactable>().enabled = false;
-            Destroy(previousObject.GetComponent<Throwable>());
-            Destroy(previousObject.GetComponent<Rigidbody>());
-        }
-        //add ingredient to end of list
-        ingredientList.Add(ingredient);
-        //move zones up
-    } 
-
-    //removes object reference from list
-    public void RemoveFromEndOfList()
-    {
-        listlength = ingredientList.Count;
-
-        if (listlength >= 2)
-        {//if object below/before it in list, add interactable back to script
-            GameObject previousObject = ingredientList[listlength - 2];
-            previousObject.AddComponent<Rigidbody>();
-            previousObject.GetComponent<Rigidbody>().isKinematic = false;
-            previousObject.AddComponent<Throwable>();
-            previousObject.GetComponent<Interactable>().enabled = true;
+        // Check if the object is an ingredient
+        if (other.gameObject.tag == "BurgerIngredient")
+        {
             
-            ingredientList.RemoveAt(listlength - 1);
-        }
-        if (listlength == 1)
-        {
-            ingredientList.RemoveAt(0);
-        }
-        //move zones down
-        burgerCombiner.MoveZoneDown();
-        removerBox.MoveAndExitScaleZoneDown();
-    }
-
-    //adds name of object to list
-    public void AddNameToEndOfList(String name)
-    {
-        //add reference to ingredient script to get name String?
-        if (!ingredientNameList.Contains(name))
-        {
-            ingredientNameList.Add(name);
         }
     }
 
-    //remove name from end of list
-    public void RemoveNameFromEndOfList()
+    private int getPrefabIndex(string ingredientName)
     {
-        Debug.Log("Enter Process to remove last name from name list");
-        listlength = ingredientNameList.Count;
-        if (listlength >= 1)
+        return 0; // change
+    }
+    private void addBottomBun(GameObject ingredient)
+    {
+        // Bind ingredient to plate
+        ingredient.transform.parent = gameObject.transform;
+
+        // Reset position to place
+        ingredient.transform.position = ingredientPlacePosition;
+
+        //Add the ingredient to a list
+        ingredientNameList.Add("bottomBun");
+        ingredientObjectList.Add(ingredient);
+        //Loop through list, if not topmost ingredient disable interaction on the ingredient
+
+    }
+
+    private void disableInteraction()
+    {
+        for (int i = 0; i < ingredientObjectList.Count - 1; i++)
         {
-            ingredientNameList.RemoveAt(listlength - 1);
+           // if (ingredientObjectList[i].GetComponent<>)
+            //{
+
+            //}
         }
+    }
+    private void addTopBun(GameObject ingredient)
+    {
+
+    }
+
+    private void incrementPosition()
+    {
+        ingredientPlacePosition = new Vector3(ingredientPlacePosition.x, ingredientPlacePosition.y + 0.05f, ingredientPlacePosition.z);
+    }
+    public void decrementPosition()
+    {
+        ingredientPlacePosition = new Vector3(ingredientPlacePosition.x, ingredientPlacePosition.y - 0.05f, ingredientPlacePosition.z);
     }
 }
+
+

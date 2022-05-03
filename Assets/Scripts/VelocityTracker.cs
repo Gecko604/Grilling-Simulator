@@ -21,7 +21,7 @@ public class VelocityTracker : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.transform.tag == "Burger")
+        if (other.transform.tag == "BurgerIngredient")
         {
             //print("on spat");
             onSpatula = true;
@@ -32,7 +32,7 @@ public class VelocityTracker : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag == "Burger")
+        if (other.transform.tag == "BurgerIngredient")
         {
             //print("off spat");
             onSpatula = false;

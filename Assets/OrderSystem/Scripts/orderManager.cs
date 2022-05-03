@@ -67,10 +67,5 @@ public class orderManager : MonoBehaviour
         }
     }
 
-  //  IEnumerator attemptSpawnOrder()
-    //{
-      //  yield return new WaitForSeconds(5);
-        //spawnOrder();
-        //StartCoroutine("attemptSpawnOrder");
-    //}
+    
 }

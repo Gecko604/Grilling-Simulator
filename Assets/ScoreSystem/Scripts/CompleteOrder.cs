@@ -72,19 +72,23 @@ public class CompleteOrder : MonoBehaviour
         }
 
     }
-    private bool evaluateOrder(GameObject burger, GameObject ticket)
+    private bool evaluateOrder(GameObject plate, GameObject ticket)
     {
-        List<string> DebugBurger = new List<string> { "bun", "cheese", "medium", "tomato", "bun", "bun" };
-        List<string> DebugTicket = new List<string> { "bun", "cheese", "medium", "bun" };
+        //List<string> DebugBurger = new List<string> { "bun", "cheese", "medium", "tomato", "bun", "bun" };
+        //List<string> DebugTicket = new List<string> { "bun", "cheese", "medium", "bun" };
+
+        List<string> burgerIngredients = plate.GetComponentInChildren<BurgerManager>().ingredientNameList;
+        List<string> ticketIngredients = ticket.transform.parent.GetComponent<CreateOrder>().GetIngredients();
 
         // If mismatch in size, instant failure 
-        if (DebugBurger.Count != DebugTicket.Count) { Debug.Log("Mismatched Ingredient Size");  return false; }
+        if (burgerIngredients.Count != ticketIngredients.Count) { Debug.Log("Mismatched Ingredient Size");  return false; }
 
         // Loop for each needed ingredient on ticket
-        for (int i = 0; i < DebugTicket.Count; i++)
+        for (int i = 0; i < ticketIngredients.Count; i++)
         {
-            if (DebugBurger[i] != DebugTicket[i])
+            if (burgerIngredients[i] != ticketIngredients[i])
             {
+                Debug.Log($"Incorrect Order! {burgerIngredients[i]} != {ticketIngredients[i]}");
                 return false;
             }
         }

@@ -2744,6 +2744,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012749712888, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: doNotDestroy
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2393514119991647475, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -8384,8 +8388,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5000005, y: 1.5034078, z: 0.9267652}
-  m_Center: {x: 0, y: -0.39, z: 0}
+  m_Size: {x: 2.5000005, y: 1.5139303, z: 0.9267652}
+  m_Center: {x: 0, y: -0.38473868, z: 0}
 --- !u!1001 &2145880133
 PrefabInstance:
   m_ObjectHideFlags: 0

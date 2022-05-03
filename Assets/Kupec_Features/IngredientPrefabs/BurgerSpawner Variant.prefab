@@ -7,17 +7,77 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2144132266449071763}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: isGrabbedOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2144132266449071763}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2144132266449071763}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: isGrabbedOff
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: handlePlating
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: IngredientSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: IngredientSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: IngredientSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062076740727076903, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1540953576704907499, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1540953576704907499, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.31747657
+      value: -0.197
       objectReference: {fileID: 0}
     - target: {fileID: 1540953576704907499, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1845193
+      value: 1.237
       objectReference: {fileID: 0}
     - target: {fileID: 1540953576704907499, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -57,7 +117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8430168519289121727, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_Name
-      value: BurgerSpawner
+      value: BurgerSpawner Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8754414280453880821, guid: 7ae18a0314c684045ad499021895973f, type: 3}
       propertyPath: m_UseGravity
@@ -69,3 +129,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+--- !u!114 &2144132266449071763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7739873169227813977, guid: 7ae18a0314c684045ad499021895973f, type: 3}
+  m_PrefabInstance: {fileID: 8550349203015006922}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cec1a736e0cf04583b5e2f6a336fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

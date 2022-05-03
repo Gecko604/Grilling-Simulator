@@ -15,6 +15,7 @@ public class IngredientSpawner : MonoBehaviour
     public GameObject ingredient = null;
     public Quaternion startRot;
 
+    public List<Collider> burgerOnly = new List<Collider>();
     private bool canSpawn = true;
 
     // Start is called before the first frame update
@@ -55,8 +56,19 @@ public class IngredientSpawner : MonoBehaviour
     public void isGrabbedOff()
     {
         isGrabbed = false;
+        if (gameObject.name == "burgerSpawner")
+        {
+            handleBurgerColliders();
+        }
     }
 
+    private void handleBurgerColliders()
+    {
+        for (int i = 0; i < burgerOnly.Count; i++)
+        {
+            burgerOnly[i].isTrigger = false;
+        }
+    }
     public void handlePlating()
     {
         // If not in a plate zone, do nothing

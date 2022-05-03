@@ -29,7 +29,7 @@ public class plateSpawner : MonoBehaviour
     {
         if (canSpawn)
         {
-            GameObject ingredientInstance = Instantiate(platePrefab, startPos, startRot) as GameObject;
+            GameObject ingredientInstance = Instantiate(platePrefab, transform.position, startRot) as GameObject;
             ingredientInstance.name = $"platePrefab";
             ingredientInstance.GetComponent<Rigidbody>().isKinematic = false;
             canSpawn = false;

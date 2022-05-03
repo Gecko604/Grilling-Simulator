@@ -8,6 +8,11 @@ public class ResetGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //StartCoroutine(resetGame());
+    }
+
+    public void StartGameReset()
+    {
         StartCoroutine(resetGame());
     }
 

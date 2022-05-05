@@ -41,15 +41,12 @@ public class CompleteOrder : MonoBehaviour
         {
            
             // eval T or F if order is correct
-
-            Debug.Log(evaluateOrder(turnInBurger, turnInTicket));
             scoreManager.MealCompleted(evaluateOrder(turnInBurger, turnInTicket));
             
             //Create transaction
             ////TODO: MealCompleted(bill amount, satisfaction level); 
 
             //Delete Order from orderManager 
-            //TODO: Give order the order ticket number
             orderManager.CompleteOrder(turnInTicket.GetComponentInParent<CreateOrder>().GetOrderNumber().ToString());
 
 
@@ -65,7 +62,7 @@ public class CompleteOrder : MonoBehaviour
             turnInTicket = null;
 
             
-
+            //Move customer alonog
             director.customerGivenOrder(orderScript.orderOwner);
 
 
@@ -74,10 +71,10 @@ public class CompleteOrder : MonoBehaviour
     }
     private bool evaluateOrder(GameObject plate, GameObject ticket)
     {
-        //List<string> DebugBurger = new List<string> { "bun", "cheese", "medium", "tomato", "bun", "bun" };
-        //List<string> DebugTicket = new List<string> { "bun", "cheese", "medium", "bun" };
 
+        // Attach data 
         List<string> burgerIngredients = plate.GetComponentInChildren<BurgerManager>().ingredientNameList;
+        burgerIngredients.Reverse();
         List<string> ticketIngredients = ticket.transform.parent.GetComponent<CreateOrder>().GetIngredients();
 
         // If mismatch in size, instant failure 
@@ -86,6 +83,11 @@ public class CompleteOrder : MonoBehaviour
         // Loop for each needed ingredient on ticket
         for (int i = 0; i < ticketIngredients.Count; i++)
         {
+            //debug only
+            if(burgerIngredients[i] == "patty")
+            {
+                continue;
+            }
             if (burgerIngredients[i] != ticketIngredients[i])
             {
                 Debug.Log($"Incorrect Order! {burgerIngredients[i]} != {ticketIngredients[i]}");
@@ -107,7 +109,7 @@ public class CompleteOrder : MonoBehaviour
         {
             turnInTicket = other.gameObject;
         }
-        Debug.Log($"Touched by : {other.gameObject.name}");
+        //Debug.Log($"Touched by : {other.gameObject.name}");
     }
     private void OnTriggerExit(Collider other)
     {

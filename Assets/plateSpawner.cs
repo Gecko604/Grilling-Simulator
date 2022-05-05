@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class plateSpawner : MonoBehaviour
 {
-    public Vector3 startPos;
-    public GameObject platePrefab = null;
-    public Quaternion startRot;
 
-    private bool canSpawn = true;
+    public GameObject platePrefab;
+
+    private bool canSpawn = true; // true when the plate has not been touched yet.
 
     // Start is called before the first frame update
     void Start()
     {
-        if (platePrefab == null) { return; }
+        if (platePrefab == null) { platePrefab = gameObject; return; }
 
-        startPos = gameObject.transform.position;
-        startRot = gameObject.transform.rotation;
     }
 
-    // Update is called once per frame
+    // Update is called once per framea
     void Update()
     {
 
@@ -27,15 +24,21 @@ public class plateSpawner : MonoBehaviour
 
     public void SpawnPlate()
     {
-        if (canSpawn)
-        {
-            GameObject ingredientInstance = Instantiate(platePrefab, transform.position, startRot) as GameObject;
-            ingredientInstance.name = $"platePrefab";
-            ingredientInstance.GetComponent<Rigidbody>().isKinematic = false;
-            canSpawn = false;
+        // When touched and SpawnPlate() is called by hands:
 
-            gameObject.transform.parent.GetComponent<BoxCollider>().isTrigger = false;
-            gameObject.transform.parent.GetComponent<Rigidbody>().useGravity = true;
-        }
+        // If already spawned a plate, return
+        if (!canSpawn) { return; }
+
+        // If first call, spawn an identical copy
+        Instantiate(platePrefab, transform.position, Quaternion.identity);
+        // Prevent further spawning
+        canSpawn = false;
+
+
+        //Turn on physics for this plate
+        GetComponent<Rigidbody>().isKinematic = false;
+        //GetComponent<Rigidbody>().useGravity = true;
+
     }
 }
+

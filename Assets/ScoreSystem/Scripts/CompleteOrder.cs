@@ -84,10 +84,10 @@ public class CompleteOrder : MonoBehaviour
         for (int i = 0; i < ticketIngredients.Count; i++)
         {
             //debug only
-            if(burgerIngredients[i] == "patty")
-            {
-                continue;
-            }
+            //if(burgerIngredients[i] == "patty")
+            //{
+              //  continue;
+            //}
             if (burgerIngredients[i] != ticketIngredients[i])
             {
                 Debug.Log($"Incorrect Order! {burgerIngredients[i]} != {ticketIngredients[i]}");

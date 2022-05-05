@@ -14,7 +14,7 @@ public class BurgerStager : MonoBehaviour
     public float heat = 0.0f;
     public bool onGrill = false;
 
-    
+    public string state = "raw";
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +26,21 @@ public class BurgerStager : MonoBehaviour
     void Update()
     {
         if (heat >= 10f && heat < 20f)
+        {
             gameObject.GetComponent<MeshRenderer>().material = MediumRare;
+            state = "medium rare";
+        }
+
         else if (heat >= 20f && heat < 30f)
+        {
             gameObject.GetComponent<MeshRenderer>().material = WellDone;
+            state = "well done";
+        }
         else if (heat >= 30f)
+        {
             gameObject.GetComponent<MeshRenderer>().material = Overcooked;
+            state = "overcooked";
+        }
 
         if (onGrill)
         {

@@ -140,7 +140,14 @@ public class BurgerManager : MonoBehaviour
             case "onionSpawner":
                 return "onion";
             case "burgerSpawner":
-                return "patty";
+                string topPatty = candidate.GetComponent<BurgerCooker>().topBurger.GetComponent<BurgerStager>().state;
+                string botPatty = candidate.GetComponent<BurgerCooker>().bottomBurger.GetComponent<BurgerStager>().state;
+
+                if (topPatty == botPatty)
+                {
+                    return topPatty;
+                }
+                return "mismatchPatty";
 
         }
         
@@ -148,6 +155,8 @@ public class BurgerManager : MonoBehaviour
         return "null";
 
     }
+
+  
 
 
     public bool addIngredient(GameObject candidate)

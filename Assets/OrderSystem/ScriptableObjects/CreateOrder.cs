@@ -25,8 +25,8 @@ public class CreateOrder : MonoBehaviour
     {
         //Create a order with given order #
         orderNumber = numOrder;
-        //Assign difficulty from score manager 
-        difficulty = scoreManager.difficulty;
+        //Assign a random difficulty
+        difficulty = UnityEngine.Random.Range(1, 4);
         //Assign ingredients
         ingredients = determineIngredients();
 
@@ -52,27 +52,25 @@ public class CreateOrder : MonoBehaviour
         List<string> pattyCookedStates = new List<string>();
 
         // Generate a random patty requirement based off difficulty - 1 = easy, 2 = medium, 3 = hard
-
+        // Append to list of possible states for the difficulty
         if (difficulty == 1)
         {
-            pattyCookedStates.Add("medium");
+            pattyCookedStates.Add("medium rare");
         }
         if (difficulty == 2)
         {
-            pattyCookedStates.Add("raw");
-            pattyCookedStates.Add("medium");
+            pattyCookedStates.Add("medium rare");
             pattyCookedStates.Add("well done");
-            pattyCookedStates.Add("overcooked");
         }
         if (difficulty == 3)
         {
-            pattyCookedStates.Add("uncooked");
             pattyCookedStates.Add("raw");
-            pattyCookedStates.Add("medium");
+            pattyCookedStates.Add("medium rare");
             pattyCookedStates.Add("well done");
             pattyCookedStates.Add("overcooked");
-            pattyCookedStates.Add("burnt");
         }
+
+        // Pick ONE state from the created list
         int num = UnityEngine.Random.Range(0, pattyCookedStates.Count - 1);
 
         return pattyCookedStates[num];
@@ -90,9 +88,9 @@ public class CreateOrder : MonoBehaviour
             pattyIngredients.Add("cheese");
         }
         if (difficulty == 2)
-            //Two toppings, one is random
+            //Two toppings, both random
         {
-            pattyIngredients.Add("lettuce");
+            pattyIngredients.Add(getRandomIngredient());
             pattyIngredients.Add(getRandomIngredient());
         }
         if (difficulty == 3)
@@ -113,8 +111,12 @@ public class CreateOrder : MonoBehaviour
 
     private string getRandomIngredient()
     {
-        List<string> candidates = new List<string> { "cheese", "lettuce", "tomato", "bun" };
-
+        List<string> candidates = new List<string> { "cheese", "lettuce", "tomato" };
+        // Allow a patty as an additional ingredient
+        if (difficulty == 3)
+        {
+            candidates.Add(determinePatty());
+        }
         int num = UnityEngine.Random.Range(0, candidates.Count);
 
         return candidates[num];

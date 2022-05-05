@@ -51,7 +51,7 @@ public class BurgerManager : MonoBehaviour
     public void AssignCandidate(GameObject candidate)
     {
         //Only show shadow if able to attach ingredient
-        if (ingredientObjectList.Count < 5)
+        if (ingredientObjectList.Count < 6)
         {
             if (candidate.name != "burgerSpawner")
             {

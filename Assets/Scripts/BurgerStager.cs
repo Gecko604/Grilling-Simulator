@@ -13,6 +13,7 @@ public class BurgerStager : MonoBehaviour
     [Header("Heat Stuff")]
     public float heat = 0.0f;
     public bool onGrill = false;
+    public GameObject smoke;
 
     
 
@@ -40,6 +41,7 @@ public class BurgerStager : MonoBehaviour
 
     public void StartGrilling()
     {
+        smoke.SetActive(true);
         onGrill = true;
     }
 
@@ -47,6 +49,7 @@ public class BurgerStager : MonoBehaviour
     {
         if (onGrill)
         {
+            smoke.SetActive(false);
             onGrill = false;
             StartCoroutine(LatentHeat());
         }
@@ -61,7 +64,7 @@ public class BurgerStager : MonoBehaviour
         {
             if (onGrill)
                 break;
-            heat += (1f);
+            heat += (1f/3f);
             yield return new WaitForSeconds(1);
             internalHeat += 1;
         }

@@ -15,20 +15,20 @@ public class VelocityTracker : MonoBehaviour
 
     private double previousV = 0;
     private double currentV = 0;
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
     private bool isInHand;
     private AudioSource crash;
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         crash = GetComponent<AudioSource>();
     }
 
 
     private void FixedUpdate()
     {
-        currentV = rigidbody.velocity.magnitude;
+        currentV = rb.velocity.magnitude;
         if (previousV >= 0.1 && currentV < 0.1 && !isInHand)
         {
             crash.PlayOneShot(crash.clip);

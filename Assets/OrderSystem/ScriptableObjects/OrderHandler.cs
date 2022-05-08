@@ -63,7 +63,7 @@ public class OrderHandler : MonoBehaviour
                 return imageMaterials[2];
             case "raw":
                 return imageMaterials[3];
-            case "medium":
+            case "medium rare":
                 return imageMaterials[4];
             case "well done":
                 return imageMaterials[5];

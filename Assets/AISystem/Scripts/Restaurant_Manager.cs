@@ -162,8 +162,8 @@ public class Restaurant_Manager : MonoBehaviour
             moveLineUp();
         } else
         {
-            if (!checkLineReady()) { Debug.Log($"Reason: CheckLineReady() returned False!"); }
-            if (waiting.Count == 3) { Debug.Log($"Reason: Waiting Line is Full!"); }
+            //if (!checkLineReady()) { Debug.Log($"Reason: CheckLineReady() returned False!"); }
+            //if (waiting.Count == 3) { Debug.Log($"Reason: Waiting Line is Full!"); }
         }
     }
     private void moveLineUp()

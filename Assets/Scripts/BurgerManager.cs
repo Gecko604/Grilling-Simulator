@@ -51,7 +51,7 @@ public class BurgerManager : MonoBehaviour
     public void AssignCandidate(GameObject candidate)
     {
         //Only show shadow if able to attach ingredient
-        if (ingredientObjectList.Count < 5)
+        if (ingredientObjectList.Count < 6)
         {
             if (candidate.name != "burgerSpawner")
             {
@@ -140,7 +140,14 @@ public class BurgerManager : MonoBehaviour
             case "onionSpawner":
                 return "onion";
             case "burgerSpawner":
-                return "patty";
+                string topPatty = candidate.GetComponent<BurgerCooker>().topBurger.GetComponent<BurgerStager>().state;
+                string botPatty = candidate.GetComponent<BurgerCooker>().bottomBurger.GetComponent<BurgerStager>().state;
+
+                if (topPatty == botPatty)
+                {
+                    return topPatty;
+                }
+                return "mismatchPatty";
 
         }
         
@@ -148,6 +155,8 @@ public class BurgerManager : MonoBehaviour
         return "null";
 
     }
+
+  
 
 
     public bool addIngredient(GameObject candidate)

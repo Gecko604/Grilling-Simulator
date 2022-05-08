@@ -46,6 +46,7 @@ public class ScoreManager : MonoBehaviour
     }
     public void MealCompleted(bool correctOrder)
     {
+        //Debug.Log(correctOrder);
         if (correctOrder)
         {
             ChangeScore(5f);

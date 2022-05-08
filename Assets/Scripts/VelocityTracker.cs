@@ -13,10 +13,27 @@ public class VelocityTracker : MonoBehaviour
     public bool onSpatula = false;
     public GameObject burger;
 
+    private double previousV = 0;
+    private double currentV = 0;
+    private Rigidbody rb;
+    private bool isInHand;
+    private AudioSource crash;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        crash = GetComponent<AudioSource>();
+    }
+
 
     private void FixedUpdate()
     {
-        
+        currentV = rb.velocity.magnitude;
+        if (previousV >= 0.1 && currentV < 0.1 && !isInHand)
+        {
+            crash.PlayOneShot(crash.clip);
+        }
+        previousV = currentV;
     }
 
     private void OnTriggerStay(Collider other)
@@ -38,5 +55,10 @@ public class VelocityTracker : MonoBehaviour
             onSpatula = false;
             burger.transform.parent = null;
         }
+    }
+
+    public void Grabbed(bool isGrabbed)
+    {
+        isInHand = isGrabbed;
     }
 }

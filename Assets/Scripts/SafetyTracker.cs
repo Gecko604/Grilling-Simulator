@@ -11,18 +11,25 @@ public class SafetyTracker : MonoBehaviour
     [Header("Penalty Tracking")]
     public ScoreManager trackPenalty;
     public GrillSoundController sounds;
+
+    private float timer;
+    public float framesBetweenTriggers;
     
     // Start is called before the first frame update
     void Start()
     {
         trackPenalty = FindObjectOfType<ScoreManager>();
         sounds = FindObjectOfType<GrillSoundController>();
+        timer = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (timer < 5.0f) 
+        {
+            timer += Time.deltaTime;
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -31,6 +38,7 @@ public class SafetyTracker : MonoBehaviour
         {
             OnGrill = true;
             StartCoroutine(ViolateSafety(other));
+            timer = 0.0f;
         }
     }
 

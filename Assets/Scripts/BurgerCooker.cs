@@ -26,11 +26,12 @@ public class BurgerCooker : MonoBehaviour
     
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.transform.tag == "Grill")
         {
-            sizzle.Play();
+            if (!(sizzle.isPlaying))
+                sizzle.Play();
             if (GetHalf())
             {
                 topBurger.GetComponent<BurgerStager>().StartGrilling();

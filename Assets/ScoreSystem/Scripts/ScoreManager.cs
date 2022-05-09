@@ -138,7 +138,7 @@ public class ScoreManager : MonoBehaviour
 
         if (playerScore < -10.00) { scoreText.text = "You Lose!"; scoreText.color = refundRed; director.gameOver = true; this.enabled = false; }
         //Testing purposes, set this to 10000
-        if (playerScore > 10000.00) { scoreText.text = "You Win!"; scoreText.color = valueMealGreen; director.gameOver = true; director.win = true; this.enabled = false; }
+        if (playerScore > 10000) { scoreText.text = "You Win!"; scoreText.color = valueMealGreen; director.gameOver = true; director.win = true; this.enabled = false; }
     }
 
     

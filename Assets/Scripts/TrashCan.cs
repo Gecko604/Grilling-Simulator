@@ -20,7 +20,7 @@ public class TrashCan : MonoBehaviour
     {
         if (other.transform.tag == "BurgerIngredient" || other.transform.tag == "plate") 
         {
-            Destroy(other);
+            Destroy(other.gameObject);
         }
     }
 }

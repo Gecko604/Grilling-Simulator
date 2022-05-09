@@ -75,6 +75,8 @@ public class OrderHandler : MonoBehaviour
                 return imageMaterials[8];
             case "tomato":
                 return imageMaterials[9];
+            case "onion":
+                return imageMaterials[10];
         }
         return null;
     }

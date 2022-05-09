@@ -25,15 +25,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1b2ba35c05715d458fe755ec90cd968, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.473
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1b2ba35c05715d458fe755ec90cd968, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.27
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1b2ba35c05715d458fe755ec90cd968, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.212
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1b2ba35c05715d458fe755ec90cd968, type: 3}
       propertyPath: m_LocalRotation.w
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1b2ba35c05715d458fe755ec90cd968, type: 3}
       propertyPath: m_Name
-      value: lettuceSpawner
+      value: lettuce Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1b2ba35c05715d458fe755ec90cd968, type: 3}
       propertyPath: m_TagString
@@ -124,6 +124,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   ingredient: {fileID: 0}
   startRot: {x: 0, y: 0, z: 0, w: 0}
+  burgerOnly: []
 --- !u!114 &328569767
 MonoBehaviour:
   m_ObjectHideFlags: 0

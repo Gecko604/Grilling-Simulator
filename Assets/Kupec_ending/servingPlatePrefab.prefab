@@ -141,7 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c336a45c8861a7409f6aff98d46225e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pattyMesh: {fileID: 6091699161856648417, guid: f0572c8d0020db64aae8a480ebcfef81, type: 3}
+  active: 0
+  pattyMesh: {fileID: 6091699161856648417, guid: 39c4ccb91f206ee438c0b28ab98fffc9, type: 3}
   ingredientCandidate: {fileID: 0}
   ingredientPos: {x: 0, y: -0.1, z: 0}
   ingredientSpawnShadow: {fileID: 317577612779843462}
@@ -276,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platePrefab: {fileID: 7165502860187512787}
+  stagerScript: {fileID: 5685385083760292113}
 --- !u!114 &1840955888792800434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +328,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7980661825028922890}
         m_TargetAssemblyTypeName: plateSpawner, Assembly-CSharp
         m_MethodName: SpawnPlate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 7980661825028922890}
+        m_TargetAssemblyTypeName: plateSpawner, Assembly-CSharp
+        m_MethodName: activate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

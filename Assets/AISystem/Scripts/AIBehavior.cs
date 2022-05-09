@@ -104,7 +104,7 @@ public class AIBehavior : MonoBehaviour
 
     IEnumerator playSound()
     {
-        int randomTime = Random.Range(10, 45);
+        int randomTime = Random.Range(10, 320);
 
 
 

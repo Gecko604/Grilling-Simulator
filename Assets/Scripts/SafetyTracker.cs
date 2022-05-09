@@ -54,7 +54,7 @@ public class SafetyTracker : MonoBehaviour
         {
             sounds.TouchGrill(collider);
             trackPenalty.ApplyPenalty();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
         }
     }
 }

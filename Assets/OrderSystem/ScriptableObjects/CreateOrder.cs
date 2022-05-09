@@ -111,7 +111,7 @@ public class CreateOrder : MonoBehaviour
 
     private string getRandomIngredient()
     {
-        List<string> candidates = new List<string> { "cheese", "lettuce", "tomato" };
+        List<string> candidates = new List<string> { "cheese", "lettuce", "tomato", "onion" };
         // Allow a patty as an additional ingredient
         if (difficulty == 3)
         {

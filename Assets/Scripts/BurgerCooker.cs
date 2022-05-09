@@ -56,7 +56,7 @@ public class BurgerCooker : MonoBehaviour
 
     private bool GetHalf()
     {
-        if(topBurger.transform.position.y > bottomBurger.transform.position.y)
+        if(topBurger.transform.position.y < bottomBurger.transform.position.y)
         {
             return true;
         } else

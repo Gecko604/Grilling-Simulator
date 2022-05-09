@@ -8,6 +8,7 @@ public class Restaurant_Manager : MonoBehaviour
 
     [Header("Game Settings")]
     [SerializeField] public bool gameOver = false;
+    [SerializeField] public bool win = false;
 
     [Header("Position References")]
     // References to positions - don't modify
@@ -35,6 +36,15 @@ public class Restaurant_Manager : MonoBehaviour
 
     //Hard-coded spawn point for each customer
     private Vector3 spawnPoint = new Vector3(2f, 1.25f, -12f);
+
+
+    [Header("Boss")]
+    [SerializeField] private BossAI bossScript = null;
+    [SerializeField] private AudioSource ambientNoise = null;
+    [SerializeField] public AudioClip gameOverClip = null;
+    [SerializeField] public AudioClip gameWonClip = null;
+    [SerializeField] public GameObject restartTicket = null;
+    [SerializeField] public List<GameObject> lights = new List<GameObject>();
 
     private void Start()
     {
@@ -64,10 +74,38 @@ public class Restaurant_Manager : MonoBehaviour
         } else
         {
             StartCoroutine(customersCleanUp());
+
+            if (!win)
+            {
+                bossScript.playGameLost();
+
+                // Play ambient sad music
+                ambientNoise.clip = gameOverClip;
+                ambientNoise.Play();
+            } else
+            {
+                bossScript.playGameWon();
+                discoLights();
+                // Play ambient sad music
+                ambientNoise.clip = gameWonClip;
+                ambientNoise.Play();
+            }
+
+            // Spawn restart spatula
+
+            restartTicket.SetActive(true);
         }
+            
         
     }
 
+    private void discoLights()
+    {
+        for(int i = 0; i < lights.Count; i++)
+        {
+            lights[i].GetComponent<disco>().startDisco();
+        }
+    }
     //
     // Return True if all customers in line are waiting
     private bool checkLineReady()

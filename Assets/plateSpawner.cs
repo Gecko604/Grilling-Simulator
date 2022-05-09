@@ -6,7 +6,7 @@ public class plateSpawner : MonoBehaviour
 {
 
     public GameObject platePrefab;
-
+    public BurgerManager stagerScript = null;
     private bool canSpawn = true; // true when the plate has not been touched yet.
 
     // Start is called before the first frame update
@@ -22,6 +22,10 @@ public class plateSpawner : MonoBehaviour
 
     }
 
+    public void activate()
+    {
+        stagerScript.active = true;
+    }
     public void SpawnPlate()
     {
         // When touched and SpawnPlate() is called by hands:

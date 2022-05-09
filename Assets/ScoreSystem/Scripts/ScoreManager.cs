@@ -37,6 +37,17 @@ public class ScoreManager : MonoBehaviour
     [Header("Game Difficulty")]
     public int difficulty = 2;
 
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource audioSource = null;
+    public List<AudioClip> soundClips = new List<AudioClip>();
+
+    [Header("Boss")]
+    [SerializeField] private BossAI bossScript = null;
+
+
+
+
     [SerializeField] private Restaurant_Manager director = null;
     public void Start()
     {
@@ -50,11 +61,26 @@ public class ScoreManager : MonoBehaviour
         if (correctOrder)
         {
             ChangeScore(5f);
+            playKaching();
+
         } else
         {
             ChangeScore(-5f);
+            playDolpin();
         }
     }
+
+    private void playKaching()
+    {
+        audioSource.clip = soundClips[0];
+        audioSource.Play();
+    }
+    private void playDolpin()
+    {
+        audioSource.clip = soundClips[1];
+        audioSource.Play();
+    }
+
     /*
      * Create a visual alert to score change
      */
@@ -110,8 +136,9 @@ public class ScoreManager : MonoBehaviour
             scoreText.color = refundRed;
         }
 
-        if (playerScore < -100.00) { scoreText.text = "You Lose!"; scoreText.color = refundRed; director.gameOver = true; this.enabled = false; }
-        if (playerScore > 10000.00) { scoreText.text = "You Win!"; scoreText.color = valueMealGreen; director.gameOver = true; this.enabled = false; }
+        if (playerScore < -10.00) { scoreText.text = "You Lose!"; scoreText.color = refundRed; director.gameOver = true; this.enabled = false; }
+        //Testing purposes, set this to 10000
+        if (playerScore > 10000) { scoreText.text = "You Win!"; scoreText.color = valueMealGreen; director.gameOver = true; director.win = true; this.enabled = false; }
     }
 
     
@@ -119,5 +146,7 @@ public class ScoreManager : MonoBehaviour
     public void ApplyPenalty()
     {
         CreateTransaction(penalty);
+        bossScript.playOuch();
+        
     }
 }

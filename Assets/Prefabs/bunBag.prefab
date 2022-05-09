@@ -216,6 +216,9 @@ MonoBehaviour:
   restoreOriginalParent: 0
   onPickUp:
     m_PersistentCalls:
+      m_Calls: []
+  onDetachFromHand:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -2162984811976146049}
         m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
@@ -229,9 +232,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onDetachFromHand:
-    m_PersistentCalls:
-      m_Calls: []
   onHeldUpdate:
     m_PersistentCalls:
       m_Calls: []

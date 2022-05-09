@@ -13,15 +13,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2db50a9e37b468a4ebe375df8a18fa92, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03346319
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2db50a9e37b468a4ebe375df8a18fa92, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.711
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2db50a9e37b468a4ebe375df8a18fa92, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.892758
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2db50a9e37b468a4ebe375df8a18fa92, type: 3}
       propertyPath: m_LocalRotation.w
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2db50a9e37b468a4ebe375df8a18fa92, type: 3}
       propertyPath: m_Name
-      value: bottomBunSpawner
+      value: hamburgerBunBottom Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2db50a9e37b468a4ebe375df8a18fa92, type: 3}
       propertyPath: m_TagString
@@ -266,3 +266,4 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   ingredient: {fileID: 0}
   startRot: {x: 0, y: 0, z: 0, w: 0}
+  burgerOnly: []

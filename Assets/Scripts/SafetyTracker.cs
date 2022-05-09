@@ -26,7 +26,7 @@ public class SafetyTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer < 5.0f) 
+        if (timer < 20.0f) 
         {
             timer += Time.deltaTime;
         }

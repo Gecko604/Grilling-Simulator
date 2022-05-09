@@ -13,31 +13,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 242bc077bac8d3741af233b7abdfde63, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.924
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 242bc077bac8d3741af233b7abdfde63, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.27
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 242bc077bac8d3741af233b7abdfde63, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.251
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 242bc077bac8d3741af233b7abdfde63, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.61675125
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 242bc077bac8d3741af233b7abdfde63, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.37017485
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 242bc077bac8d3741af233b7abdfde63, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5651484
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 242bc077bac8d3741af233b7abdfde63, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.40397495
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 242bc077bac8d3741af233b7abdfde63, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 242bc077bac8d3741af233b7abdfde63, type: 3}
       propertyPath: m_Name
-      value: tomatoSpawner
+      value: tomato Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 242bc077bac8d3741af233b7abdfde63, type: 3}
       propertyPath: m_TagString
@@ -112,6 +112,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   ingredient: {fileID: 0}
   startRot: {x: 0, y: 0, z: 0, w: 0}
+  burgerOnly: []
 --- !u!114 &327049314
 MonoBehaviour:
   m_ObjectHideFlags: 0

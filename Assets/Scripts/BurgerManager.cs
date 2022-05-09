@@ -94,9 +94,11 @@ public class BurgerManager : MonoBehaviour
                 return new Vector3(0.2f, 0.5f, 0.2f);
             case "burgerSpawner":
                 // fix this
+                Debug.Log("test1");
                 return new Vector3(0.09f, 2f, 0.09f);
         }
 
+        Debug.Log("test2");
         // Return default value (1,1,1)
         return new Vector3(1f, 1f, 1f);
     }
@@ -117,7 +119,7 @@ public class BurgerManager : MonoBehaviour
             case "onionSpawner":
                 return new Vector3(0.0f, 0.01f, 0.0f);
             case "burgerSpawner":
-                return new Vector3(0.0f, 0.01f, 0.0f);
+                return new Vector3(0.0f, 0.02f, 0.0f);
         }
 
         // Return default value (0f,1f,0f)

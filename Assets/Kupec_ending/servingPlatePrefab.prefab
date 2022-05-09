@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c336a45c8861a7409f6aff98d46225e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pattyMesh: {fileID: 6091699161856648417, guid: f0572c8d0020db64aae8a480ebcfef81, type: 3}
+  pattyMesh: {fileID: 6091699161856648417, guid: 39c4ccb91f206ee438c0b28ab98fffc9, type: 3}
   ingredientCandidate: {fileID: 0}
   ingredientPos: {x: 0, y: -0.1, z: 0}
   ingredientSpawnShadow: {fileID: 317577612779843462}

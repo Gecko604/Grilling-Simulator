@@ -23,10 +23,13 @@ public class BossAI : MonoBehaviour
         
     }
 
-    public void beAngry()
+    private void Scare()
     {
-        StartCoroutine(lerpFrustration());
+        transform.localScale = new Vector3(1f, 1f, 1f);
+        transform.position = new Vector3(-3.75f, 1f, 5f);
+
     }
+
     public void playYell()
     {
 
